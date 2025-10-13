@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { assetPath } from "@/lib/asset-path"
 
 export default function HeroAnimated() {
   const [mounted, setMounted] = useState(false)
@@ -41,7 +42,7 @@ export default function HeroAnimated() {
 
         <div className={`aspect-[4/3] w-full overflow-hidden rounded-lg border border-border order-first md:order-last ${baseTransition} md:opacity-100 ${mounted ? visible : hidden}`}>
           <img
-            src="/luxury-interior-lighting-with-modern-fixtures.jpg"
+            src={assetPath("/luxury-interior-lighting-with-modern-fixtures.jpg")}
             alt="Curated luxury interior with modern lighting"
             className="h-full w-full object-cover"
           />

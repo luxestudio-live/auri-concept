@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 // ...existing code...
 import { AutoCarousel } from "@/components/auto-carousel"
+import { assetPath } from "@/lib/asset-path"
 
 function Header() {
   return (
@@ -12,7 +13,7 @@ function Header() {
         <Link href="/" className="flex items-center gap-2" aria-label="Auri Concept Home">
           <div className="flex items-center">
             <img 
-              src="/auri-logo.svg" 
+              src={assetPath("/auri-logo.svg")}
               alt="" 
               className="h-8 w-auto"
               style={{ maxWidth: '120px' }}
@@ -62,29 +63,29 @@ const categories: Category[] = [
     key: "lights",
     title: "Lights",
     desc: "Architectural, ambient, and statement lighting for every space.",
-    productImg: "/designer-ceiling-light-product.jpg",
-    installImg: "/designer-ceiling-light-installed-in-modern-living-.jpg",
+    productImg: assetPath("/designer-ceiling-light-product.jpg"),
+    installImg: assetPath("/designer-ceiling-light-installed-in-modern-living-.jpg"),
   },
   {
     key: "fans",
     title: "Fans",
     desc: "Silent, efficient airflow with premium finishes.",
-    productImg: "/modern-ceiling-fan-product.jpg",
-    installImg: "/modern-ceiling-fan-installed-in-bedroom.jpg",
+    productImg: assetPath("/modern-ceiling-fan-product.jpg"),
+    installImg: assetPath("/modern-ceiling-fan-installed-in-bedroom.jpg"),
   },
   {
     key: "smart",
     title: "Smart Controls",
     desc: "Intuitive dimmers, scenes, and automation that just works.",
-    productImg: "/smart-home-wall-switch-product.jpg",
-    installImg: "/smart-home-wall-switch-installed-in-hallway.jpg",
+    productImg: assetPath("/smart-home-wall-switch-product.jpg"),
+    installImg: assetPath("/smart-home-wall-switch-installed-in-hallway.jpg"),
   },
   {
     key: "locks",
     title: "Door Locks",
     desc: "Secure, elegant access with smart locking systems.",
-    productImg: "/smart-door-lock-product.jpg",
-    installImg: "/smart-door-lock-installed-on-modern-entry-door.jpg",
+    productImg: assetPath("/smart-door-lock-product.jpg"),
+    installImg: assetPath("/smart-door-lock-installed-on-modern-entry-door.jpg"),
   },
 ]
 
@@ -203,7 +204,7 @@ function InstagramCTA() {
           </div>
           <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-border">
             <img
-              src="/instagram-grid-luxury-lighting.jpg"
+              src={assetPath("/instagram-grid-luxury-lighting.jpg")}
               alt="Instagram style grid showing luxury lighting and interiors"
               className="h-full w-full object-cover"
             />

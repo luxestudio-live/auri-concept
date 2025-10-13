@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { assetPath } from "@/lib/asset-path"
 
 export function SiteHeader() {
   const pathname = usePathname() || "/"
@@ -20,11 +21,11 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
   <Link href="/" className="flex items-center gap-4 group" aria-label="Auri Concept Home">
           <img
-              src="/ac-logo.svg"
+              src={assetPath("/ac-logo.svg")}
             alt="Auri Concept logo"
             className="h-8 w-auto object-contain"
             style={{ maxWidth: 48 }}
-            onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = '/auri-logo.svg'; }}
+            onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = assetPath('/auri-logo.svg'); }}
             width={48}
             height={48}
           />

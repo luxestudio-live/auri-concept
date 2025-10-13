@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { SocialLinks } from "@/components/social-links"
 import { motion } from "framer-motion"
+import { assetPath } from "@/lib/asset-path"
 
 export default function AboutPage() {
   return (
@@ -53,7 +54,7 @@ export default function AboutPage() {
 
           <div className="w-full">
             <div className="overflow-hidden rounded-lg border border-border bg-muted">
-              <Image src="/designer-ceiling-light-installed-in-modern-living-.jpg" alt="Interior" width={1200} height={800} className="w-full h-full object-cover" />
+              <Image src={assetPath("/designer-ceiling-light-installed-in-modern-living-.jpg")} alt="Interior" width={1200} height={800} className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -67,7 +68,7 @@ export default function AboutPage() {
         <div className="py-12 bg-card mx-auto max-w-6xl px-4 grid grid-cols-1 gap-10 md:grid-cols-2 items-center">
           <div className="order-2 md:order-1">
             <div className="overflow-hidden rounded-lg border border-border bg-muted">
-              <Image src="/modern-ceiling-fan-installed-in-bedroom.jpg" alt="Fan" width={1200} height={800} className="w-full h-full object-cover" />
+              <Image src={assetPath("/modern-ceiling-fan-installed-in-bedroom.jpg")} alt="Fan" width={1200} height={800} className="w-full h-full object-cover" />
             </div>
           </div>
 
