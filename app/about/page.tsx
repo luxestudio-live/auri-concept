@@ -10,10 +10,7 @@ export default function AboutPage() {
   return (
     <main className="overflow-x-hidden">
       {/* Hero */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}>
+      <section className="opacity-100">
         <div className="pt-12 pb-8 mx-auto max-w-6xl px-4 text-center">
           <h1 className="text-pretty text-4xl md:text-6xl font-bold leading-tight">Our Journey of Innovation and Elegance</h1>
           <p className="mt-6 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -23,14 +20,14 @@ export default function AboutPage() {
           <p className="mt-6 text-sm text-muted-foreground">We design spaces that speak luxury &amp; innovation ⚡</p>
           <p className="text-sm text-muted-foreground">Lights • Fans • Smart Controls • Door Locks 💡</p>
         </div>
-      </motion.section>
+      </section>
 
       {/* Feature sections - alternating */}
       <motion.section
-        initial={{ opacity: 0, x: -40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}>
+        initial={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}>
         <div className="py-12 mx-auto max-w-6xl px-4 grid grid-cols-1 gap-10 md:grid-cols-2 items-center">
           <div>
             <h2 className="text-2xl md:text-3xl font-semibold">Pioneering Design. Uncompromising Innovation.</h2>
@@ -61,10 +58,10 @@ export default function AboutPage() {
       </motion.section>
 
       <motion.section
-        initial={{ opacity: 0, x: 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}>
+        initial={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}>
         <div className="py-12 bg-card mx-auto max-w-6xl px-4 grid grid-cols-1 gap-10 md:grid-cols-2 items-center">
           <div className="order-2 md:order-1">
             <div className="overflow-hidden rounded-lg border border-border bg-muted">
@@ -95,10 +92,10 @@ export default function AboutPage() {
 
       {/* Promise + CTA */}
       <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}>
+        initial={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}>
         <div className="py-12 mx-auto max-w-6xl px-4 text-center">
           <h3 className="text-2xl md:text-3xl font-semibold">The Auri Concept Promise: Unrivaled Quality.</h3>
           <p className="mt-4 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -120,10 +117,10 @@ export default function AboutPage() {
 
       {/* Footer note + social */}
       <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}>
+        initial={{ opacity: 1 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}>
         <div className="pb-12 mx-auto max-w-6xl px-4 text-center">
           <div className="inline-flex items-center justify-center gap-4">
             <SocialLinks />
