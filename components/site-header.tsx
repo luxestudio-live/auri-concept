@@ -18,7 +18,7 @@ export function SiteHeader() {
   ]
 
   return (
-    <header className="relative border-b border-border shadow-sm transition-shadow duration-300">
+    <header className="relative border-b border-border bg-background shadow-sm transition-shadow duration-300">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
   <Link href="/" className="flex items-center gap-4 group" aria-label="Auri Concept Home">
           <img
@@ -63,16 +63,16 @@ export function SiteHeader() {
             aria-controls="mobile-menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+            className="inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-border"
           >
             <span className="sr-only">Toggle menu</span>
             {/* hamburger / close icons */}
             {open ? (
-              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <svg className="h-6 w-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <svg className="h-6 w-6 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                 <path d="M3 6h18M3 12h18M3 18h18" />
               </svg>
             )}
