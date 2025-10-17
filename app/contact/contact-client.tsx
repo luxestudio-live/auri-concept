@@ -11,9 +11,9 @@ import { motion } from "framer-motion"
 
 function ContactCard({ title, subtitle, actionText, href, icon }: Readonly<{ title: string; subtitle: string; actionText: string; href: string; icon: string }>) {
   return (
-    <div className="rounded-lg border border-border bg-white p-6 text-center hover:shadow-md transition-shadow">
+    <div className="rounded-lg border border-border bg-card p-6 text-center hover:shadow-md transition-shadow">
       <div className="text-primary text-3xl mb-3">{icon}</div>
-      <h4 className="font-semibold text-lg">{title}</h4>
+      <h4 className="font-semibold text-lg text-card-foreground">{title}</h4>
       <p className="mt-2 text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">{subtitle}</p>
       <div className="mt-4">
         <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium hover:underline transition-colors">
@@ -89,8 +89,8 @@ export default function ContactClientPage() {
                   <ContactCard icon="📍" title="Showroom & Office" subtitle="123 Luxury Lane, Mumbai, MH 400001" actionText="View on Map" href="#" />
                 </div>
 
-                <div className="bg-white border border-border rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold mb-4">Connect with Us</h3>
+                <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold mb-4 text-card-foreground">Connect with Us</h3>
                   <div className="flex justify-center">
                     <SocialLinks />
                   </div>
@@ -106,8 +106,8 @@ export default function ContactClientPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <div className="bg-white border border-border rounded-lg p-8 shadow-sm">
-                <h2 className="text-2xl font-semibold mb-2">Send Us a Message</h2>
+              <div className="bg-card border border-border rounded-lg p-8 shadow-sm">
+                <h2 className="text-2xl font-semibold mb-2 text-card-foreground">Send Us a Message</h2>
                 <p className="text-sm text-muted-foreground mb-6">
                   We'd love to hear from you. Fill out the form below.
                 </p>
