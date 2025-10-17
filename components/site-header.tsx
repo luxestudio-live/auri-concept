@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { assetPath } from "@/lib/asset-path"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function SiteHeader() {
   const pathname = usePathname() || "/"
@@ -56,6 +57,7 @@ export function SiteHeader() {
 
         {/* Mobile menu button */}
         <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
           <button
             type="button"
             aria-controls="mobile-menu"
@@ -79,6 +81,7 @@ export function SiteHeader() {
 
         {/* Instagram button for md+ */}
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <Button asChild className="ml-1">
             <a
               href="https://www.instagram.com/auriconcept_/"
