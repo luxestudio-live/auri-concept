@@ -232,7 +232,7 @@ function ContactCTA() {
                 Email Us
               </a>
             </Button>
-            <Button asChild variant="outline" className="bg-transparent">
+            <Button asChild variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
               <a
                 href="https://www.instagram.com/auriconcept_/"
                 target="_blank"
