@@ -130,7 +130,7 @@ function BrandHighlights() {
     <section id="about" className="bg-card border-y border-border">
       <div className="mx-auto max-w-6xl px-4 py-10 md:py-12">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="rounded-lg border border-border p-5 hover:shadow-md transition-shadow">
+          <div className="rounded-lg border border-border bg-card p-5 hover:shadow-md transition-shadow">
             <div className="flex items-center gap-3 mb-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -139,13 +139,13 @@ function BrandHighlights() {
                   <path d="M2 12l10 5 10-5"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-medium">Curated Luxury</h3>
+              <h3 className="text-lg font-medium text-card-foreground">Curated Luxury</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Premium brands and products selected for performance, finish, and longevity.
             </p>
           </div>
-          <div className="rounded-lg border border-border p-5 hover:shadow-md transition-shadow">
+          <div className="rounded-lg border border-border bg-card p-5 hover:shadow-md transition-shadow">
             <div className="flex items-center gap-3 mb-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -153,13 +153,13 @@ function BrandHighlights() {
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-medium">Modern Innovation</h3>
+              <h3 className="text-lg font-medium text-card-foreground">Modern Innovation</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Smart, scalable systems that integrate seamlessly into your lifestyle.
             </p>
           </div>
-          <div className="rounded-lg border border-border p-5 hover:shadow-md transition-shadow">
+          <div className="rounded-lg border border-border bg-card p-5 hover:shadow-md transition-shadow">
             <div className="flex items-center gap-3 mb-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -169,7 +169,7 @@ function BrandHighlights() {
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                 </svg>
               </div>
-              <h3 className="text-lg font-medium">Trusted Distribution</h3>
+              <h3 className="text-lg font-medium text-card-foreground">Trusted Distribution</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Reliable sourcing and support for homeowners, designers, and builders.
@@ -186,8 +186,8 @@ function InstagramCTA() {
     <section className="border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
-          <div className="rounded-lg border border-border p-6">
-            <h2 className="text-pretty text-2xl font-semibold md:text-3xl">See what inspires us</h2>
+          <div className="rounded-lg border border-border bg-card p-6">
+            <h2 className="text-pretty text-2xl font-semibold md:text-3xl text-card-foreground">See what inspires us</h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">
               Explore real projects, new arrivals, and styling ideas on Instagram.
             </p>
