@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,16 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export function SiteHeader() {
   const pathname = usePathname() || "/"
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -18,7 +28,11 @@ export function SiteHeader() {
   ]
 
   return (
-    <header className="relative border-b border-border bg-background shadow-sm transition-shadow duration-300">
+    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300 ${
+      scrolled 
+        ? 'bg-background/80 backdrop-blur-lg shadow-lg' 
+        : 'bg-background shadow-sm'
+    }`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
   <Link href="/" className="flex items-center gap-4 group" aria-label="Auri Concept Home">
           <img
