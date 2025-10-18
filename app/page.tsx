@@ -322,7 +322,7 @@ function SocialLinkItem({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="group inline-flex size-10 items-center justify-center rounded-full bg-card text-foreground/75 ring-1 ring-border transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+      className="group inline-flex size-10 items-center justify-center rounded-full bg-background text-foreground ring-1 ring-border transition-all hover:bg-primary hover:text-primary-foreground hover:ring-primary hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
     >
       {children}
       <span className="sr-only">{label}</span>
