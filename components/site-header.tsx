@@ -97,7 +97,7 @@ export function SiteHeader() {
 
       {/* Mobile menu panel */}
       {open && (
-        <div id="mobile-menu" className="md:hidden absolute inset-x-0 top-full z-40 bg-card border-b border-border">
+        <div id="mobile-menu" className="md:hidden absolute inset-x-0 top-full z-40 bg-card border-b border-border shadow-lg">
           <div className="mx-auto max-w-6xl px-4 py-4">
             <ul className="flex flex-col gap-3">
               {navItems.map((item) => {
@@ -107,7 +107,7 @@ export function SiteHeader() {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`block text-sm px-3 py-2 rounded ${isActive ? "text-primary font-medium" : "text-foreground hover:bg-muted/50"}`}
+                      className={`block text-sm px-3 py-2 rounded ${isActive ? "text-primary font-medium bg-primary/10" : "text-card-foreground hover:bg-accent hover:text-accent-foreground"}`}
                       aria-current={isActive ? "page" : undefined}
                     >
                       {item.label}
