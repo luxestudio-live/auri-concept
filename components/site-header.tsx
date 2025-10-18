@@ -28,12 +28,12 @@ export function SiteHeader() {
   ]
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 animate-fade-in ${
       scrolled 
-        ? 'bg-background/80 backdrop-blur-lg shadow-lg' 
-        : 'bg-background shadow-sm'
+        ? 'bg-background/95 backdrop-blur-md shadow-lg border-border/30' 
+        : 'bg-background shadow-sm border-border/10'
     }`}>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
   <Link href="/" className="flex items-center gap-4 group" aria-label="Auri Concept Home">
           <img
               src={assetPath("/ac-logo.svg")}
