@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   description: "Created with love",
   generator: "Auri Concept",
   icons: {
-     icon: [{ url: '/ac-logo.svg', sizes: 'any', type: 'image/svg+xml' }],
-     shortcut: [{ url: '/ac-logo.svg' }],
-     apple: [{ url: '/ac-logo.svg' }],
+    icon: [{ url: '/transparent-logo.png', sizes: 'any', type: 'image/png' }],
+    shortcut: [{ url: '/transparent-logo.png' }],
+    apple: [{ url: '/transparent-logo.png' }],
   },
 }
 

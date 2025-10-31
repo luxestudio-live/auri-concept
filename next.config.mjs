@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/auri-concept',
+  // basePath: '/auri-concept', // Remove for local dev
   images: {
     unoptimized: true,
   },

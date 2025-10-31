@@ -1,3 +1,24 @@
+/* Subtle card background for all themes */
+.bg-card-subtle {
+  background-color: var(--card-subtle-bg);
+}
+
+:root {
+  --card-subtle-bg: #f3f4f6;
+}
+
+.dark {
+  --card-subtle-bg: #18181b;
+}
+.midnight {
+  --card-subtle-bg: #10111a;
+}
+.warm {
+  --card-subtle-bg: #f7f3ed;
+}
+.monochrome {
+  --card-subtle-bg: #e5e7eb;
+}
 @import "tailwindcss";
 @import "tw-animate-css";
 

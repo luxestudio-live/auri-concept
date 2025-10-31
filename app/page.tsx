@@ -60,32 +60,32 @@ type Category = {
 
 const categories: Category[] = [
   {
-    key: "lights",
-    title: "Lights",
+    key: "Eureka Lights",
+    title: "Eureka Lights",
     desc: "Architectural, ambient, and statement lighting for every space.",
-    productImg: assetPath("/designer-ceiling-light-product.jpg"),
-    installImg: assetPath("/designer-ceiling-light-installed-in-modern-living-.jpg"),
+    productImg: assetPath("/Eureka 1.jpg"),
+    installImg: assetPath("/Eureka 2.jpg"),
   },
   {
-    key: "fans",
-    title: "Fans",
+    key: "Platina Lights",
+    title: "Platina Lights",
     desc: "Silent, efficient airflow with premium finishes.",
-    productImg: assetPath("/modern-ceiling-fan-product.jpg"),
-    installImg: assetPath("/modern-ceiling-fan-installed-in-bedroom.jpg"),
+    productImg: assetPath("/Platina1.jpg"),
+    installImg: assetPath("/Platina2.jpg"),
   },
   {
-    key: "smart",
-    title: "Smart Controls",
+    key: "Mamba Lights",
+    title: "Mamba Lights",
     desc: "Intuitive dimmers, scenes, and automation that just works.",
-    productImg: assetPath("/smart-home-wall-switch-product.jpg"),
-    installImg: assetPath("/smart-home-wall-switch-installed-in-hallway.jpg"),
+    productImg: assetPath("/Mamba1.jpg"),
+    installImg: assetPath("/Mamba2.jpg"),
   },
   {
-    key: "locks",
-    title: "Door Locks",
+    key: "Kaama Lights",
+    title: "Kaama Lights",
     desc: "Secure, elegant access with smart locking systems.",
-    productImg: assetPath("/smart-door-lock-product.jpg"),
-    installImg: assetPath("/smart-door-lock-installed-on-modern-entry-door.jpg"),
+    productImg: assetPath("/Kaama1.jpg"),
+    installImg: assetPath("/Kaama2.jpg"),
   },
 ]
 
@@ -103,19 +103,19 @@ function ProductCategories() {
             </a>
           </Button>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {categories.map((c) => (
-            <Card key={c.key} className="overflow-hidden">
+            <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
               <div className="relative">
                 <div className="aspect-[4/3] w-full overflow-hidden">
                   <AutoCarousel images={[c.productImg, c.installImg]} altTexts={[`${c.title} product image`, `${c.title} installed in context`]} />
                 </div>
               </div>
-              <CardHeader>
-                <CardTitle className="text-xl">{c.title}</CardTitle>
+              <CardHeader className="pt-2 pb-0">
+                <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
               </CardHeader>
-              <CardContent className="pb-6">
-                <p className="text-muted-foreground leading-relaxed">{c.desc}</p>
+              <CardContent className="pb-2">
+                <p className="leading-relaxed text-foreground/80">{c.desc}</p>
               </CardContent>
             </Card>
           ))}
