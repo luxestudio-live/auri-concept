@@ -92,7 +92,7 @@ const categories: Category[] = [
     title: "Olivia Lights",
     desc: "Architectural, ambient, and statement lighting for every space.",
     productImg: assetPath("/Olivia1.jpg"),
-    installImg: assetPath("/Olivia2.jpg"),
+    installImg: assetPath("/olivia2.jpg"),
   },
   {
     key: "Eliza Lights",
