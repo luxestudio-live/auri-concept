@@ -6,17 +6,18 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { assetPath } from "@/lib/asset-path"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useTheme } from "next-themes"
 
 export function SiteHeader() {
   const pathname = usePathname() || "/"
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -27,29 +28,34 @@ export function SiteHeader() {
     { href: "/contact", label: "Contact" },
   ]
 
+  // Select logo based on theme
+  const logoSrc =
+    theme === "dark" || theme === "midnight"
+      ? assetPath("/auri-black-bg-logo.jpg")
+      : assetPath("/auri-white-bg-logo.jpg")
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 animate-fade-in ${
       scrolled 
         ? 'bg-background/95 backdrop-blur-md shadow-lg border-border/30' 
         : 'bg-background shadow-sm border-border/10'
     }`}>
-      <div className="mx-auto max-w-6xl flex items-center px-4 py-3 md:py-4">
+      <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3 md:py-4">
         {/* Logo left */}
-        <div className="flex items-center gap-2 min-w-[180px]">
-          <Link href="/" className="flex items-center gap-2" aria-label="Auri Concept Home">
+        <div className="flex items-center min-w-[120px]">
+          <Link href="/" className="flex items-center" aria-label="Auri Concept Home">
             <img
-              src={assetPath("/transparent-logo.png")}
+              src={logoSrc}
               alt="Auri Concept Logo"
-              className="h-8 w-auto object-contain"
-              style={{ maxWidth: 48 }}
-              width={48}
-              height={48}
+              className="h-16 w-auto object-contain"
+              style={{ maxWidth: 80 }}
+              width={80}
+              height={80}
             />
-            <span className="text-2xl font-extrabold tracking-tight text-foreground" style={{ fontFamily: 'Montserrat, Arial, sans-serif', letterSpacing: '-0.5px' }}>Auri Concept</span>
           </Link>
         </div>
-        {/* Nav center */}
-        <nav className="flex-1 flex items-center justify-center">
+        {/* Nav center (desktop only) */}
+        <nav className="hidden md:flex flex-1 items-center justify-center">
           <ul className="flex items-center gap-8">
             {navItems.map((item) => {
               const isActive = pathname === item.href || (item.href === "/" && pathname === "/")
@@ -67,8 +73,8 @@ export function SiteHeader() {
             })}
           </ul>
         </nav>
-        {/* Controls right */}
-        <div className="flex items-center gap-3 min-w-[180px] justify-end">
+        {/* Controls right (desktop only) */}
+        <div className="hidden md:flex items-center gap-3 min-w-[180px] justify-end">
           <ThemeToggle />
           <Button asChild className="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-md">
             <a
@@ -81,8 +87,8 @@ export function SiteHeader() {
             </a>
           </Button>
         </div>
-        {/* Mobile menu button */}
-        <div className="flex items-center gap-3 md:hidden">
+        {/* Mobile menu button (mobile only, right aligned) */}
+        <div className="flex md:hidden items-center gap-3 ml-auto">
           <ThemeToggle />
           <button
             type="button"
