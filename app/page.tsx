@@ -87,7 +87,119 @@ const categories: Category[] = [
     productImg: assetPath("/Kaama1.jpg"),
     installImg: assetPath("/Kaama2.jpg"),
   },
-]
+  {
+    key: "Olivia Lights",
+    title: "Olivia Lights",
+    desc: "Architectural, ambient, and statement lighting for every space.",
+    productImg: assetPath("/Olivia1.jpg"),
+    installImg: assetPath("/Olivia2.jpg"),
+  },
+  {
+    key: "Eliza Lights",
+    title: "Eliza Lights",
+    desc: "Silent, efficient airflow with premium finishes.",
+    productImg: assetPath("/Eliza1.jpg"),
+    installImg: assetPath("/Eliza2.jpg"),
+  },
+  {
+    key: "Limca Lights",
+    title: "Limca Lights",
+    desc: "Intuitive dimmers, scenes, and automation that just works.",
+    productImg: assetPath("/Limca1.jpg"),
+    installImg: assetPath("/Limca2.jpg"),
+  },
+  {
+    key: "Magna Lights",
+    title: "Magna & Siara Lights",
+    desc: "Secure, elegant access with smart locking systems.",
+    productImg: assetPath("/Siara1.jpg"),
+    installImg: assetPath("/Magna1.jpg"),
+  },
+  {
+    key: "Krsna & Orina Lights",
+    title: "Krsna & Orina Lights",
+    desc: "Architectural, ambient, and statement lighting for every space.",
+    productImg: assetPath("/Krsna1.jpg"),
+    installImg: assetPath("/Orina.jpg"),
+  },
+  {
+    key: "Platina Lights",
+    title: "Tisya & Presa Lights",
+    desc: "Silent, efficient airflow with premium finishes.",
+    productImg: assetPath("/Tisya.jpg"),
+    installImg: assetPath("/Presa.jpg"),
+  },
+  {
+    key: "Mamba Lights",
+    title: "Switches",
+    desc: "Intuitive dimmers, scenes, and automation that just works.",
+    productImg: assetPath("/Switch1.jpg"),
+    installImg: assetPath("/Switch2.jpg"),
+  },
+  {
+    key: "Kaama Lights",
+    title: "Smart Switches",
+    desc: "Secure, elegant access with smart locking systems.",
+    productImg: assetPath("/SSwitch1.jpg"),
+    installImg: assetPath("/SSwitch2.jpg"),
+  },
+  {
+    key: "Fans",
+    title: "Smart Fans",
+    desc: "Architectural, ambient, and statement lighting for every space.",
+    productImg: assetPath("/Atomberg1.png"),
+    installImg: assetPath("/Atomberg2.png"),
+  },
+  {
+    key: "Platina Lights",
+    title: "Smart Fans",
+    desc: "Silent, efficient airflow with premium finishes.",
+    productImg: assetPath("/Atomberg3.png"),
+    installImg: assetPath("/Atomberg4.png"),
+  },
+  {
+    key: "Mamba Lights",
+    title: "Altis Smart Lock",
+    desc: "Intuitive dimmers, scenes, and automation that just works.",
+    productImg: assetPath("/Atlis1.png"),
+    installImg: assetPath("/Atlis2.png"),
+  },
+  {
+    key: "Kaama Lights",
+    title: "Qlick Smart Lock",
+    desc: "Secure, elegant access with smart locking systems.",
+    productImg: assetPath("/Qlick1.png"),
+    installImg: assetPath("/Qlick2.jpg"),
+  },
+  {
+    key: "Eureka Lights",
+    title: "Smart Automation",
+    desc: "Architectural, ambient, and statement lighting for every space.",
+    productImg: assetPath("/smartliving1.jpg"),
+    installImg: assetPath("/smartliving2.jpg"),
+  },
+  // {
+  //   key: "Platina Lights",
+  //   title: "Platina Lights",
+  //   desc: "Silent, efficient airflow with premium finishes.",
+  //   productImg: assetPath("/Platina1.jpg"),
+  //   installImg: assetPath("/Platina2.jpg"),
+  // },
+  // {
+  //   key: "Mamba Lights",
+  //   title: "Mamba Lights",
+  //   desc: "Intuitive dimmers, scenes, and automation that just works.",
+  //   productImg: assetPath("/Mamba1.jpg"),
+  //   installImg: assetPath("/Mamba2.jpg"),
+  // },
+  // {
+  //   key: "Kaama Lights",
+  //   title: "Kaama Lights",
+  //   desc: "Secure, elegant access with smart locking systems.",
+  //   productImg: assetPath("/Kaama1.jpg"),
+  //   installImg: assetPath("/Kaama2.jpg"),
+  // },
+ ]
 
 function ProductCategories() {
   return (
@@ -119,6 +231,15 @@ function ProductCategories() {
               </CardContent>
             </Card>
           ))}
+          {/* Sweet ending card */}
+          <Card className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl flex items-center justify-center min-h-[120px]">
+            <CardHeader className="pt-2 pb-0 w-full text-center">
+              <CardTitle className="text-xl text-foreground">And many more...</CardTitle>
+            </CardHeader>
+            <CardContent className="pb-2 w-full text-center">
+              <p className="leading-relaxed text-foreground/80">Discover even more exclusive products in our full catalog!</p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

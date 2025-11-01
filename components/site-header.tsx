@@ -28,11 +28,8 @@ export function SiteHeader() {
     { href: "/contact", label: "Contact" },
   ]
 
-  // Select logo based on theme
-  const logoSrc =
-    theme === "dark" || theme === "midnight"
-      ? assetPath("/auri-black-bg-logo.jpg")
-      : assetPath("/auri-white-bg-logo.jpg")
+  // Always use new transparent logo
+  const logoSrc = assetPath("/transparentlogo.png")
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 animate-fade-in ${
