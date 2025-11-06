@@ -332,8 +332,8 @@ function InstagramCTA() {
           </div>
           <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-border">
             <img
-              src={assetPath("/instagram-grid-luxury-lighting.jpg")}
-              alt="Instagram style grid showing luxury lighting and interiors"
+              src={assetPath("/auri-instagram.png")}
+              alt="Auri Concept Instagram grid: luxury lighting and interiors"
               className="h-full w-full object-cover"
             />
           </div>
@@ -473,7 +473,7 @@ function SocialLinks() {
       <SocialLinkItem href="https://www.youtube.com/channel/UCauriconcept" label="YouTube">
         <SocialIcon name="youtube" className="size-5" />
       </SocialLinkItem>
-      <SocialLinkItem href="https://wa.me/0000000000" label="WhatsApp">
+  <SocialLinkItem href="https://wa.me/919819355577" label="WhatsApp">
         <SocialIcon name="whatsapp" className="size-5" />
       </SocialLinkItem>
     </nav>
@@ -499,7 +499,7 @@ function Footer() {
 function FloatingWhatsApp() {
   return (
     <a
-      href="https://wa.me/0000000000"
+      href="https://wa.me/919819355577"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Auri Concept on WhatsApp"

@@ -46,17 +46,7 @@ export function SocialIcon({
       )
     case "whatsapp":
       return (
-        // Use a filled WhatsApp mark for recognizability at small sizes; inherit color via currentColor
-        <svg
-          className={className}
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M20.52 3.48A11.78 11.78 0 0012.05 0C5.42 0 .1 5.32.1 11.95c0 2.11.55 4.18 1.6 6.02L4 24l5.61-1.42A11.88 11.88 0 0012.05 24h.01c6.63 0 11.95-5.32 11.95-11.95 0-3.19-1.25-6.18-3.49-8.55z" />
-          <path d="M17.3 14.1c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.36.22-.66.07-.3-.15-1.14-.42-2.17-1.34-.8-.74-1.34-1.65-1.5-1.95-.16-.3-.02-.46.12-.61.13-.13.3-.33.45-.5.15-.17.2-.28.27-.45.07-.17.03-.33-.02-.48-.05-.15-.44-1.04-.6-1.43-.16-.38-.32-.34-.45-.34l-.43-.01c-.15 0-.4.06-.61.29-.22.24-.84.82-.84 2.01 0 1.19.86 2.34.98 2.5.12.17 1.7 2.6 4.12 3.65 2.42 1.06 2.42.71 2.85.67.43-.04 1.36-.55 1.55-1.07.18-.52.18-.96.13-1.06-.05-.11-.2-.17-.43-.28z" />
-        </svg>
+  <img src="/whatsapp.png" alt="WhatsApp" className={className} />
       )
   }
 }
@@ -99,7 +89,7 @@ export function SocialLinks() {
       <SocialLinkItem href="https://www.youtube.com/channel/UCauriconcept" label="YouTube">
     <SocialIcon name="youtube" className="w-5 h-5" />
       </SocialLinkItem>
-      <SocialLinkItem href="https://wa.me/0000000000" label="WhatsApp">
+      <SocialLinkItem href="https://wa.me/919819355577" label="WhatsApp">
     <SocialIcon name="whatsapp" className="w-5 h-5" />
       </SocialLinkItem>
     </nav>

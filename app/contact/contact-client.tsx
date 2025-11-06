@@ -80,13 +80,13 @@ export default function ContactClientPage() {
             >
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <ContactCard icon="📱" title="WhatsApp" subtitle="+91 1234 123-4567" actionText="Message Us" href="https://wa.me/919876543210" />
-                  <ContactCard icon="📞" title="Phone Number" subtitle="+91 8762 987-6543" actionText="Call Us" href="tel:+918762987654" />
+                  <ContactCard icon="📱" title="WhatsApp" subtitle="+91 98193 55577" actionText="Message Us" href="https://wa.me/919819355577" />
+                  <ContactCard icon="📞" title="Phone Number" subtitle="+91 98193 55577" actionText="Call Us" href="tel:+919819355577" />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <ContactCard icon="✉️" title="Email Address" subtitle="info@auriconcept.com" actionText="Send Email" href="mailto:info@auriconcept.com" />
-                  <ContactCard icon="📍" title="Showroom & Office" subtitle="123 Luxury Lane, Mumbai, MH 400001" actionText="View on Map" href="#" />
+                  <ContactCard icon="📍" title="Showroom & Office" subtitle={"Unit no 205, bldg no.5, Jogani industrial premises, V.N.Purav Marg, Sion (E)- Chunabhatti, Maharashtra, India, 400022"} actionText="View on Map" href="https://maps.app.goo.gl/UfDvKTPQNxAnpx2P9" />
                 </div>
 
                 <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
