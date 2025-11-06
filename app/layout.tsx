@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   description: "Created with love",
   generator: "Auri Concept",
   icons: {
-    icon: [{ url: '/transparent-logo.png', sizes: 'any', type: 'image/png' }],
-    shortcut: [{ url: '/transparent-logo.png' }],
-    apple: [{ url: '/transparent-logo.png' }],
+    icon: [{ url: require("@/lib/asset-path").assetPath("/transparent-logo.png"), sizes: 'any', type: 'image/png' }],
+    shortcut: [{ url: require("@/lib/asset-path").assetPath("/transparent-logo.png") }],
+    apple: [{ url: require("@/lib/asset-path").assetPath("/transparent-logo.png") }],
   },
 }
 

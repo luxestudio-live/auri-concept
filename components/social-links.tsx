@@ -46,7 +46,7 @@ export function SocialIcon({
       )
     case "whatsapp":
       return (
-  <img src="/whatsapp.png" alt="WhatsApp" className={className} />
+        <img src={require("@/lib/asset-path").assetPath("/whatsapp.png")} alt="WhatsApp" className={className} />
       )
   }
 }
