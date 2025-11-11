@@ -29,7 +29,11 @@ export default function HeroAnimated() {
             Lighting, comfort, and security—curated for modern living. Discover high-end products engineered to
             elevate homes and commercial spaces.
           </p>
-          <p className="mt-3 text-sm text-muted-foreground">{"Lights • Fans • Smart Controls • Door Locks"}</p>
+          <p className="mt-3 text-base">
+            <span className="inline-block rounded bg-primary/10 px-3 py-1 font-semibold text-primary shadow-sm ring-1 ring-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:ring-primary/40 transition-colors">
+              Lights • Fans • Smart Controls • Door Locks
+            </span>
+          </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Button asChild size="lg" className="h-12 px-8 text-base">
               <Link href="#products">Explore Products</Link>
@@ -42,8 +46,8 @@ export default function HeroAnimated() {
 
         <div className={`aspect-[4/3] w-full overflow-hidden rounded-lg border border-border order-first md:order-last ${baseTransition} md:opacity-100 ${mounted ? visible : hidden}`}>
           <img
-            src={assetPath("/luxury-interior-lighting-with-modern-fixtures.jpg")}
-            alt="Curated luxury interior with modern lighting"
+            src={assetPath("/hero-image.png")}
+            alt="Auri Concept hero image"
             className="h-full w-full object-cover"
           />
         </div>

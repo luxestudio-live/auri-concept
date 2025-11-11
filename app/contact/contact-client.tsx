@@ -26,23 +26,35 @@ function ContactCard({ title, subtitle, actionText, href, icon }: Readonly<{ tit
 
 export default function ContactClientPage() {
   const [submitting, setSubmitting] = React.useState(false)
+  const [submitted, setSubmitted] = React.useState(false)
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setSubmitting(true)
+    setSubmitted(false)
+    const form = e.currentTarget
+    const data = new FormData(form)
     try {
-      const form = e.currentTarget
-      const data = Object.fromEntries(new FormData(form).entries())
-      console.log("[v0] contact-form submit:", data)
-      // Simulate success; integrate API/server action later if needed.
-      await new Promise((r) => setTimeout(r, 600))
-      toast?.({
-        title: "Message sent",
-        description: "Thanks! We’ll get back to you shortly.",
+      const res = await fetch("https://formspree.io/f/xwpakrqn", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: data,
       })
-      form.reset()
+      if (res.ok) {
+        toast?.({
+          title: "Message sent",
+          description: "Thanks! We’ll get back to you shortly.",
+        })
+        setSubmitted(true)
+        form.reset()
+      } else {
+        const result = await res.json()
+        throw new Error(result?.error || "Unknown error")
+      }
     } catch (err) {
-      console.error("[v0] contact-form error:", err)
+      console.error("[formspree] contact-form error:", err)
       toast?.({
         title: "Something went wrong",
         description: "Please try again or reach us via email/phone.",
@@ -112,7 +124,7 @@ export default function ContactClientPage() {
                   We'd love to hear from you. Fill out the form below.
                 </p>
 
-                <form onSubmit={onSubmit} className="space-y-5">
+                <form onSubmit={onSubmit} className="space-y-5" autoComplete="off">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <Label htmlFor="firstName">First Name</Label>
@@ -145,8 +157,31 @@ export default function ContactClientPage() {
                     />
                   </div>
 
-                  <Button type="submit" disabled={submitting} className="w-full h-12 text-base">
-                    {submitting ? "Sending..." : "Send Message"}
+                  <Button
+                    type="submit"
+                    disabled={submitting || submitted}
+                    className={
+                      `w-full h-12 text-base flex items-center justify-center transition-all duration-300 ` +
+                      (submitting ? "opacity-80 cursor-not-allowed" : "") +
+                      (submitted ? " bg-green-600 text-white" : "")
+                    }
+                    asChild
+                  >
+                    <span>
+                      {submitting ? (
+                        <span className="flex items-center gap-2">
+                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                          Sending...
+                        </span>
+                      ) : submitted ? (
+                        <span className="flex items-center gap-2">
+                          <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                          Submitted
+                        </span>
+                      ) : (
+                        "Send Message"
+                      )}
+                    </span>
                   </Button>
                 </form>
               </div>
