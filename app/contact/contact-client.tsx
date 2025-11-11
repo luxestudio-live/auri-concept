@@ -119,6 +119,32 @@ export default function ContactClientPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <div className="bg-card border border-border rounded-lg p-8 shadow-sm">
+                <style>{`
+                  form input, form textarea {
+                    color: var(--foreground, #18181b) !important;
+                    background: var(--input, #fff) !important;
+                    border: 1.5px solid var(--border, #bbb) !important;
+                  }
+                  form input:focus, form textarea:focus {
+                    background: #f0f4ff !important;
+                    border-color: #0070f3 !important;
+                  }
+                  form input::placeholder, form textarea::placeholder {
+                    color: #888 !important;
+                  }
+                  .dark form input, .dark form textarea {
+                    color: var(--foreground, #f3f4f6) !important;
+                    background: #232336 !important;
+                    border-color: #333 !important;
+                  }
+                  .dark form input:focus, .dark form textarea:focus {
+                    background: #18181b !important;
+                    border-color: #60a5fa !important;
+                  }
+                  .dark form input::placeholder, .dark form textarea::placeholder {
+                    color: #aaa !important;
+                  }
+                `}</style>
                 <h2 className="text-2xl font-semibold mb-2 text-card-foreground">Send Us a Message</h2>
                 <p className="text-sm text-muted-foreground mb-6">
                   We'd love to hear from you. Fill out the form below.
@@ -159,29 +185,26 @@ export default function ContactClientPage() {
 
                   <Button
                     type="submit"
-                    disabled={submitting || submitted}
+                    disabled={submitting}
                     className={
                       `w-full h-12 text-base flex items-center justify-center transition-all duration-300 ` +
                       (submitting ? "opacity-80 cursor-not-allowed" : "") +
                       (submitted ? " bg-green-600 text-white" : "")
                     }
-                    asChild
                   >
-                    <span>
-                      {submitting ? (
-                        <span className="flex items-center gap-2">
-                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
-                          Sending...
-                        </span>
-                      ) : submitted ? (
-                        <span className="flex items-center gap-2">
-                          <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                          Submitted
-                        </span>
-                      ) : (
-                        "Send Message"
-                      )}
-                    </span>
+                    {submitting ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                        Sending...
+                      </span>
+                    ) : submitted ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        Submitted
+                      </span>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </div>
