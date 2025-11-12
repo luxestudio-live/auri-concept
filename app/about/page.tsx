@@ -128,18 +128,7 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      {/* Footer note + social */}
-      <motion.section
-        initial={{ opacity: 1 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, ease: "easeOut" }}>
-        <div className="pb-12 mx-auto max-w-6xl px-4 text-center">
-          <div className="inline-flex items-center justify-center gap-4">
-            <SocialLinks />
-          </div>
-        </div>
-      </motion.section>
+      {/* Footer note removed: social icons are now only in the footer */}
     </main>
   )
 }
