@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: "Auri Concept",
-  description: "Created with love",
+  description: "Where Innovation Meets Elegance",
   generator: "Auri Concept",
   icons: {
     icon: [{ url: require("@/lib/asset-path").assetPath("/transparent-logo.png"), sizes: 'any', type: 'image/png' }],
