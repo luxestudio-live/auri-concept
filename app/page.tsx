@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 // ...existing code...
 import { AutoCarousel } from "@/components/auto-carousel"
+import FeaturedProductZoom from "@/components/featured-product-zoom"
 import { assetPath } from "@/lib/asset-path"
 
 function Header() {
@@ -50,165 +51,360 @@ function Hero() {
   return <HeroWrapper />
 }
 
+
 type Category = {
   key: string
   title: string
   desc: string
-  productImg: string
-  installImg: string
+  images: string[]
+  altTexts: string[]
 }
 
 const categories: Category[] = [
   {
-    key: "Eureka Lights",
-    title: "Eureka Lights",
-    desc: "Illuminate your world with architectural brilliance and ambient elegance—Eureka Lights transform every space into a statement of luxury.",
-    productImg: assetPath("/Eureka 1.jpg"),
-    installImg: assetPath("/Eureka 2.jpg"),
+    key: "Pernia Lights",
+    title: "Pernia Lights",
+    desc: "Illuminate your world with architectural brilliance and ambient elegance—Pernia Lights transform every space into a statement of luxury.",
+    images: [assetPath("/Pernia1.jpeg"), assetPath("/Pernia2.jpeg")],
+    altTexts: ["Pernia Lights product image 1", "Pernia Lights product image 2"],
   },
   {
-    key: "Platina Lights",
-    title: "Platina Lights",
-    desc: "Experience the perfect blend of silent operation and premium finishes—Platina Lights bring comfort and sophistication to your interiors.",
-    productImg: assetPath("/Platina1.jpg"),
-    installImg: assetPath("/Platina2.jpg"),
+    key: "Viona Lights",
+    title: "Viona Lights",
+    desc: "Experience the perfect blend of silent operation and premium finishes—Viona Lights bring comfort and sophistication to your interiors.",
+    images: [assetPath("/Viona1.jpeg"), assetPath("/Viona2.jpeg"), assetPath("/Viona3.jpeg")],
+    altTexts: ["Viona Lights product image 1", "Viona Lights product image 2", "Viona Lights product image 3"],
   },
   {
-    key: "Mamba Lights",
-    title: "Mamba Lights",
-    desc: "Effortless control meets modern design—Mamba Lights offer intuitive dimming, smart scenes, and seamless automation for every mood.",
-    productImg: assetPath("/Mamba1.jpg"),
-    installImg: assetPath("/Mamba2.jpg"),
+    key: "Vatica Lights",
+    title: "Vatica Lights",
+    desc: "Effortless control meets modern design—Vatica Lights offer intuitive dimming, smart scenes, and seamless automation for every mood.",
+    images: [assetPath("/Vatica1.jpeg"), assetPath("/Vatica2.jpeg"), assetPath("/Vatica3.jpeg")],
+    altTexts: ["Vatica Lights product image 1", "Vatica Lights product image 2", "Vatica Lights product image 3"],
   },
   {
-    key: "Kaama Lights",
-    title: "Kaama Lights",
-    desc: "Elevate your security with style—Kaama Lights feature smart locking systems that combine elegance and peace of mind.",
-    productImg: assetPath("/Kaama1.jpg"),
-    installImg: assetPath("/Kaama2.jpg"),
+    key: "Tiara Lights",
+    title: "Tiara Lights",
+    desc: "Create unforgettable atmospheres—Tiara Lights deliver ambient beauty and architectural flair for homes that inspire.",
+    images: [assetPath("/Tiara1.jpeg"), assetPath("/Tiara2.jpeg"), assetPath("/Tiara3.jpeg")],
+    altTexts: ["Tiara Lights product image 1", "Tiara Lights product image 2", "Tiara Lights product image 3"],
   },
   {
-    key: "Olivia Lights",
-    title: "Olivia Lights",
-    desc: "Create unforgettable atmospheres—Olivia Lights deliver ambient beauty and architectural flair for homes that inspire.",
-    productImg: assetPath("/Olivia1.jpg"),
-    installImg: assetPath("/olivia2.jpg"),
+    key: "Yesha Lights",
+    title: "Yesha Lights",
+    desc: "Whisper-quiet performance and refined aesthetics—Yesha Lights are crafted for those who value both comfort and luxury.",
+    images: [assetPath("/Yesha1.jpeg"), assetPath("/Yesha2.jpeg"), assetPath("/Yesha3.jpeg"), assetPath("/Yesha4.jpeg")],
+    altTexts: ["Yesha Lights product image 1", "Yesha Lights product image 2", "Yesha Lights product image 3", "Yesha Lights product image 4"],
+  },
+
+  {
+    key: "Elara Lights",
+    title: "Elara Lights",
+    desc: "Whisper-quiet performance and refined aesthetics—Elara Lights are crafted for those who value both comfort and luxury.",
+    images: [assetPath("/Elara1.jpeg"), assetPath("/Elara2.jpeg"), assetPath("/Elara3.jpeg"), assetPath("/Elara4.jpeg")],
+    altTexts: [
+      "Elara Lights product image 1",
+      "Elara Lights product image 2",
+      "Elara Lights product image 3",
+      "Elara Lights product image 4",
+    ],
   },
   {
-    key: "Eliza Lights",
-    title: "Eliza Lights",
-    desc: "Whisper-quiet performance and refined aesthetics—Eliza Lights are crafted for those who value both comfort and luxury.",
-    productImg: assetPath("/Eliza1.jpg"),
-    installImg: assetPath("/Eliza2.jpg"),
+    key: "Persia Lights",
+    title: "Persia Lights",
+    desc: "Whisper-quiet performance and refined aesthetics—Persia Lights are crafted for those who value both comfort and luxury.",
+    images: [assetPath("/Persia1.jpeg"), assetPath("/Persia2.jpeg"), assetPath("/Persia3.jpeg"), assetPath("/Persia4.jpeg")],
+    altTexts: [
+      "Persia Lights product image 1",
+      "Persia Lights product image 2",
+      "Persia Lights product image 3",
+      "Persia Lights product image 4",
+    ],
   },
   {
-    key: "Limca Lights",
-    title: "Limca Lights",
-    desc: "Smart living made simple—Limca Lights provide intuitive automation and scene control for a truly connected home.",
-    productImg: assetPath("/Limca1.jpg"),
-    installImg: assetPath("/Limca2.jpg"),
+    key: "Freya Lights",
+    title: "Freya Lights",
+    desc: "Smart living made simple—Freya Lights provide intuitive automation and scene control for a truly connected home.",
+    images: [assetPath("/Freya1.jpeg"), assetPath("/Freya2.jpeg")],
+    altTexts: ["Freya Lights product image 1", "Freya Lights product image 2"],
   },
   {
-    key: "Magna Lights",
-    title: "Magna & Siara Lights",
-    desc: "Secure your space with innovation—Magna & Siara Lights offer advanced locking solutions with a touch of elegance.",
-    productImg: assetPath("/Siara1.jpg"),
-    installImg: assetPath("/Magna1.jpg"),
+    key: "Breeza Lights",
+    title: "Breeza Lights",
+    desc: "Smart living made simple—Breeza Lights provide intuitive automation and scene control for a truly connected home.",
+    images: [assetPath("/Breeza1.jpeg"), assetPath("/Breeza2.jpeg")],
+    altTexts: ["Breeza Lights product image 1", "Breeza Lights product image 2"],
   },
   {
-    key: "Krsna & Orina Lights",
-    title: "Krsna & Orina Lights",
-    desc: "Artful illumination for every occasion—Krsna & Orina Lights blend ambient warmth with architectural sophistication.",
-    productImg: assetPath("/Krsna1.jpg"),
-    installImg: assetPath("/Orina.jpg"),
+    key: "Strip Lights",
+    title: "Strip Lights",
+    desc: "Secure your space with innovation—Strip Lights offer advanced locking solutions with a touch of elegance.",
+    images: [assetPath("/StripLight1.jpeg"), assetPath("/StripLight2.jpeg"), assetPath("/StripLight3.jpeg"), assetPath("/StripLight4.jpeg")],
+    altTexts: [
+      "Strip Lights product image 1",
+      "Strip Lights product image 2",
+      "Strip Lights product image 3",
+      "Strip Lights product image 4",
+    ],
   },
   {
-    key: "Platina Lights",
-    title: "Tisya & Presa Lights",
-    desc: "Premium airflow and stunning design—Tisya & Presa Lights redefine comfort with silent, efficient technology.",
-    productImg: assetPath("/Tisya.jpg"),
-    installImg: assetPath("/Presa.jpg"),
+    key: "Driver/SMPS",
+    title: "Driver/SMPS",
+    desc: "Artful illumination for every occasion—Gamma Lights blend ambient warmth with architectural sophistication.",
+    images: [assetPath("/Gamma1.jpeg"), assetPath("/Gamma2.jpeg"), assetPath("/Gamma3.jpeg")],
+    altTexts: [
+      "Gamma Lights product image 1",
+      "Gamma Lights product image 2",
+      "Gamma Lights product image 3",
+    ],
   },
+  {
+    key: "Rope Lights",
+    title: "Rope Lights",
+    desc: "Artful illumination for every occasion—Gamma Lights blend ambient warmth with architectural sophistication.",
+    images: [assetPath("/RopeLight1.jpeg"), assetPath("/RopeLight2.jpeg"), assetPath("/RopeLight3.jpeg"), assetPath("/RopeLight4.jpeg")],
+    altTexts: [
+      "Rope Lights product image 1",
+      "Rope Lights product image 2",
+      "Rope Lights product image 3",
+    ],
+  },
+  {
+    key: "Wall Lights",
+    title: "Wall Lights",
+    desc: "Premium airflow and stunning design—Wall Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Corea1.jpeg"), assetPath("/Corea2.jpeg")],
+    altTexts: ["Corea Lights product image 1", "Corea Lights product image 2"],
+  },
+  {
+    key: "Wall Lights",
+    title: "Wall Lights",
+    desc: "Premium airflow and stunning design—Wall Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Haina1.jpeg"), assetPath("/Haina2.jpeg")],
+    altTexts: ["Haina Lights product image 1", "Haina Lights product image 2"],
+  },
+  {
+    key: "Wall Lights",
+    title: "Wall Lights",
+    desc: "Premium airflow and stunning design—Wall Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Kaama1.jpeg"), assetPath("/Kaama2.jpeg")],
+    altTexts: ["kaama Lights product image 1", "kaama Lights product image 2"],
+  },
+  {
+    key: "Wall Lights",
+    title: "Wall Solar Lights",
+    desc: "Premium airflow and stunning design—Wall Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Kiaora1.jpeg"), assetPath("/Kiaora2.jpeg"), assetPath("/Limca1.jpeg")],
+    altTexts: ["Kiora Lights product image 1", "Kiora Lights product image 2"],
+  },
+  {
+    key: "Bollard Lights",
+    title: "Bollard Lights",
+    desc: "Premium airflow and stunning design—Bollard Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Kymaa1.jpeg"), assetPath("/Kymaa2.jpeg")],
+    altTexts: ["Kymaa Lights product image 1", "Kymaa Lights product image 2"],
+  },
+  {
+    key: "Bollard Lights",
+    title: "Bollard Solar Lights",
+    desc: "Premium airflow and stunning design—Bollard Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Kea1.jpeg"), assetPath("/Kea2.jpeg")],
+    altTexts: ["Kea Lights product image 1", "Kea Lights product image 2"],
+  },
+  {
+    key: "Bollard Lights",
+    title: "Bollard Lights",
+    desc: "Premium airflow and stunning design—Bollard Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Mamba1.jpeg"), assetPath("/Mamba2.jpeg")],
+    altTexts: ["Mamba Lights product image 1", "Mamba Lights product image 2"],
+  },
+  {
+    key: "Bollard Lights",
+    title: "Bollard Lights",
+    desc: "Premium airflow and stunning design—Bollard Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Jariva1.jpeg"), assetPath("/Jariva2.jpeg")],
+    altTexts: ["jariva Lights product image 1", "jariva Lights product image 2"],
+  },
+  {
+    key: "Gate Lights",
+    title: "Gate Lights",
+    desc: "Premium airflow and stunning design—Garden Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Tresa1.jpeg"), assetPath("/Tresa2.jpeg")],
+    altTexts: ["Tresa Lights product image 1", "Tresa Lights product image 2"],
+  },
+  {
+    key: "Garden Lights",
+    title: "Garden Lights",
+    desc: "Premium airflow and stunning design—Garden Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Fiesta1.jpeg"), assetPath("/Fiesta2.jpeg")],
+    altTexts: ["Fiesta Lights product image 1", "Fiesta Lights product image 2"],
+  },
+  {
+    key: "Garden Lights",
+    title: "Garden Lights",
+    desc: "Premium airflow and stunning design—Garden Lights redefine comfort with silent, efficient technology.",
+    images: [assetPath("/Shanaya1.jpeg"), assetPath("/Shanaya2.jpeg"),assetPath("/Hydra1.jpeg")],
+    altTexts: ["Shanaya Lights product image 1", "Shanaya Lights product image 2"],
+  },
+  // {
+  //   key: "Hydra & Limca Lights",
+  //   title: "Hydra & Limca Lights",
+  //   desc: "Premium airflow and stunning design—Hydra & Limca Lights redefine comfort with silent, efficient technology.",
+  //   images: [assetPath("/Hydra1.jpeg"), assetPath("/Limca1.jpeg")],
+  //   altTexts: ["jariva Lights product image 1", "jariva Lights product image 2"],
+  // },
+  {
+    key: "Wires & Cabels",
+    title: "Wires & Cabels",
+    desc: "Secure your space with innovation—Vaaya Wire offer advanced locking solutions with a touch of elegance.",
+    images: [assetPath("/Wire1.jpeg"), assetPath("/Wire2.jpeg"), assetPath("/Wire3.jpeg"), assetPath("/Wire4.jpeg")],
+    altTexts: [
+      "Vaaya Wire product image 1",
+      "Vaaya Wire product image 2",
+      "Vaaya Wire product image 3",
+      "Vaaya Wire product image 4",
+    ],
+  },
+  {
+    key: "Wires & Cabels",
+    title: "Wires & Cabels",
+    desc: "Secure your space with innovation—Vaaya Wire offer advanced locking solutions with a touch of elegance.",
+    images: [assetPath("/Wire5.jpeg"), assetPath("/Wire6.jpeg"), assetPath("/Wire7.jpeg"), assetPath("/Wire8.jpeg")],
+    altTexts: [
+      "Vaaya Wire product image 1",
+      "Vaaya Wire product image 2",
+      "Vaaya Wire product image 3",
+      "Vaaya Wire product image 4",
+    ],
+  },
+
+
+
   {
     key: "Mamba Lights",
     title: "Switches",
     desc: "Seamless control at your fingertips—our Switches combine intuitive design with smart automation for effortless living.",
-    productImg: assetPath("/Switch1.jpg"),
-    installImg: assetPath("/Switch2.jpg"),
+    images: [assetPath("/Switch1.jpg"), assetPath("/Switch2.jpg"), assetPath("/Switches1.jpeg"), assetPath("/Switches2.jpeg")],
+    altTexts: ["Switches product image 1", "Switches product image 2"],
   },
   {
     key: "Kaama Lights",
-    title: "Smart Switches",
+    title: "Smart Switches & Automation",
     desc: "Upgrade your home with intelligent access—Smart Switches deliver secure, elegant solutions for modern lifestyles.",
-    productImg: assetPath("/SSwitch1.jpg"),
-    installImg: assetPath("/SSwitch2.jpg"),
+    images: [assetPath("/SSwitch1.jpg"),assetPath("/smartliving1.jpg"), assetPath("/smartliving2.jpg"), assetPath("/SSwitch2.jpg"), assetPath("/SSwitches1.jpeg"), assetPath("/SSwitches2.jpeg"), assetPath("/SSwitches3.jpeg")],
+    altTexts: ["Smart Switches product image 1", "Smart Switches product image 2"],
   },
   {
     key: "Fans",
     title: "Smart Fans",
     desc: "Refresh your space with innovation—Smart Fans offer silent operation and smart features for ultimate comfort.",
-    productImg: assetPath("/Atomberg1.png"),
-    installImg: assetPath("/Atomberg2.png"),
+    images: [assetPath("/Atomberg1.png"), assetPath("/Atomberg2.png")],
+    altTexts: ["Smart Fans product image 1", "Smart Fans product image 2"],
   },
   {
     key: "Platina Lights",
     title: "Smart Fans",
     desc: "Silent, efficient airflow with premium finishes—Smart Fans bring a new level of comfort and style to your home.",
-    productImg: assetPath("/Atomberg3.png"),
-    installImg: assetPath("/Atomberg4.png"),
+    images: [assetPath("/Atomberg3.png"), assetPath("/Atomberg4.png")],
+    altTexts: ["Smart Fans product image 3", "Smart Fans product image 4"],
   },
   {
     key: "Mamba Lights",
     title: "Altis Smart Lock",
     desc: "Advanced security meets contemporary design—Altis Smart Lock protects your home with style and intelligence.",
-    productImg: assetPath("/Atlis1.png"),
-    installImg: assetPath("/Atlis2.png"),
+    images: [assetPath("/Atlis1.png"), assetPath("/Atlis2.png")],
+    altTexts: ["Altis Smart Lock product image 1", "Altis Smart Lock product image 2"],
   },
   {
     key: "Kaama Lights",
     title: "Qlick Smart Lock",
     desc: "Quick, secure, and stylish—Qlick Smart Lock brings peace of mind and modern aesthetics to your entryways.",
-    productImg: assetPath("/Qlick1.png"),
-    installImg: assetPath("/Qlick2.jpg"),
+    images: [assetPath("/Qlick1.png"), assetPath("/Qlick2.jpg")],
+    altTexts: ["Qlick Smart Lock product image 1", "Qlick Smart Lock product image 2"],
   },
-  {
-    key: "Eureka Lights",
-    title: "Smart Automation",
-    desc: "Transform your home into a smart haven—our automation solutions integrate lighting, security, and comfort seamlessly.",
-    productImg: assetPath("/smartliving1.jpg"),
-    installImg: assetPath("/smartliving2.jpg"),
-  },
-  {
-    key: "Platina Lights",
-    title: "Premium Lights",
-    desc: "Discover the pinnacle of lighting design—Premium Lights combine luxury, performance, and artistry for extraordinary spaces.",
-    productImg: assetPath("/premium-light1.jpg"),
-    installImg: assetPath("/premium-light2.jpg"),
-  },
-  {
-    key: "Mamba Lights",
-    title: "Premium Lights",
-    desc: "Experience intuitive control and breathtaking illumination—Premium Lights set the standard for smart, beautiful spaces.",
-    productImg: assetPath("/premium-light7.jpg"),
-    installImg: assetPath("/premium-light8.jpg"),
-  },
-  {
-    key: "Kaama Lights",
-    title: "Premium Lights",
-    desc: "Secure, elegant, and innovative—Premium Lights redefine what it means to live in style.",
-    productImg: assetPath("/premium-light3.jpg"),
-    installImg: assetPath("/premium-light4.jpg"),
-  },
-  {
-    key: "Kaama Lights",
-    title: "Premium Lights",
-    desc: "Premium Lights are the ultimate choice for discerning homeowners.",
-    productImg: assetPath("/premium-light5.jpg"),
-    installImg: assetPath("/premium-light6.jpg"),
-  },
+  // {
+  //   key: "Eureka Lights",
+  //   title: "Smart Automation",
+  //   desc: "Transform your home into a smart haven—our automation solutions integrate lighting, security, and comfort seamlessly.",
+  //   images: [assetPath("/smartliving1.jpg"), assetPath("/smartliving2.jpg")],
+  //   altTexts: ["Smart Automation product image 1", "Smart Automation product image 2"],
+  // },
+  // {
+  //   key: "Platina Lights",
+  //   title: "Premium Lights",
+  //   desc: "Discover the pinnacle of lighting design—Premium Lights combine luxury, performance, and artistry for extraordinary spaces.",
+  //   images: [assetPath("/premium-light1.jpg"), assetPath("/premium-light2.jpg")],
+  //   altTexts: ["Premium Lights product image 1", "Premium Lights product image 2"],
+  // },
+  // {
+  //   key: "Mamba Lights",
+  //   title: "Premium Lights",
+  //   desc: "Experience intuitive control and breathtaking illumination—Premium Lights set the standard for smart, beautiful spaces.",
+  //   images: [assetPath("/premium-light7.jpg"), assetPath("/premium-light8.jpg")],
+  //   altTexts: ["Premium Lights product image 7", "Premium Lights product image 8"],
+  // },
+  // {
+  //   key: "Kaama Lights",
+  //   title: "Premium Lights",
+  //   desc: "Secure, elegant, and innovative—Premium Lights redefine what it means to live in style.",
+  //   images: [assetPath("/premium-light3.jpg"), assetPath("/premium-light4.jpg")],
+  //   altTexts: ["Premium Lights product image 3", "Premium Lights product image 4"],
+  // },
+  // {
+  //   key: "Kaama Lights",
+  //   title: "Premium Lights",
+  //   desc: "Premium Lights are the ultimate choice for discerning homeowners.",
+  //   images: [assetPath("/premium-light5.jpg"), assetPath("/premium-light6.jpg")],
+  //   altTexts: ["Premium Lights product image 5", "Premium Lights product image 6"],
+  // },
  ]
 
+
+function AutomationSection() {
+  // Use a vertical/portrait video for automation
+  const videoSrc = assetPath("/Automation Video.mp4");
+  return (
+    <section className="border-t border-border bg-card" id="automation-section">
+      <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 flex flex-col md:flex-row gap-8 items-center">
+        <div className="w-full md:w-1/2 flex flex-col gap-4">
+          <h2 className="text-2xl font-semibold md:text-3xl mb-2 text-card-foreground">Smart Automation</h2>
+          <p className="text-lg text-card-foreground/80 mb-2">
+            Experience seamless living with our advanced smart automation solutions. Effortlessly control lighting, security, and comfort from anywhere. Integrate with voice assistants, schedule routines, and enjoy a truly connected home.
+          </p>
+          <ul className="list-disc pl-5 text-card-foreground/70 text-base">
+            <li>Lighting & Ambience Control</li>
+            <li>Smart Scenes & Scheduling</li>
+            <li>Voice & App Integration</li>
+            <li>Energy Efficiency</li>
+            <li>Security & Access Automation</li>
+          </ul>
+        </div>
+        <div className="w-full md:w-1/2 flex justify-center">
+          <video
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="rounded-lg w-[320px] h-[480px] object-cover border border-border shadow bg-black"
+            style={{ aspectRatio: '9/16', maxHeight: 480, maxWidth: 320 }}
+          >
+            Sorry, your browser does not support embedded videos.
+          </video>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProductCategories() {
+  // Find the index of the Smart Switches product
+  const smartSwitchIndex = categories.findIndex(
+    (c) => c.title.toLowerCase().includes("smart switch")
+  );
+  // Split categories before and after Smart Switches
+  const before = smartSwitchIndex === -1 ? categories : categories.slice(0, smartSwitchIndex);
+  const after = smartSwitchIndex === -1 ? [] : categories.slice(smartSwitchIndex);
   return (
     <section id="products" aria-labelledby="products-heading" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -223,11 +419,11 @@ function ProductCategories() {
           </Button>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {categories.map((c) => (
+          {before.map((c) => (
             <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
               <div className="relative">
                 <div className="aspect-[4/3] w-full overflow-hidden">
-                  <AutoCarousel images={[c.productImg, c.installImg]} altTexts={[`${c.title} product image`, `${c.title} installed in context`]} />
+                  <AutoCarousel images={c.images} altTexts={c.altTexts} />
                 </div>
               </div>
               <CardHeader className="pt-2 pb-0">
@@ -238,19 +434,42 @@ function ProductCategories() {
               </CardContent>
             </Card>
           ))}
-          {/* Sweet ending card */}
-          <Card className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl flex items-center justify-center min-h-[120px]">
-            <CardHeader className="pt-2 pb-0 w-full text-center">
-              <CardTitle className="text-xl text-foreground">And many more...</CardTitle>
-            </CardHeader>
-            <CardContent className="pb-2 w-full text-center">
-              <p className="leading-relaxed text-foreground/80">Discover even more exclusive products in our full catalog!</p>
-            </CardContent>
-          </Card>
+        </div>
+      </div>
+      {/* Automation section inserted here */}
+      <AutomationSection />
+      <div className="mx-auto max-w-6xl px-4 pb-12 md:pb-16">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {after.map((c) => (
+            <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+              <div className="relative">
+                <div className="aspect-[4/3] w-full overflow-hidden">
+                  <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                </div>
+              </div>
+              <CardHeader className="pt-2 pb-0">
+                <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="pb-2">
+                <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+          {/* Sweet ending card only after all products */}
+          {after.length > 0 && (
+            <Card className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl flex items-center justify-center min-h-[120px]">
+              <CardHeader className="pt-2 pb-0 w-full text-center">
+                <CardTitle className="text-xl text-foreground">And many more...</CardTitle>
+              </CardHeader>
+              <CardContent className="pb-2 w-full text-center">
+                <p className="leading-relaxed text-foreground/80">Discover even more exclusive products in our full catalog!</p>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function BrandHighlights() {
@@ -511,10 +730,25 @@ function FloatingWhatsApp() {
   )
 }
 
+
+
+// featured product is now handled by a client component in components/featured-product.tsx
+
 export default function HomePage() {
   return (
     <main>
       <Hero />
+      <FeaturedProductZoom
+        productName="Shloka Series Magnetic Track Light"
+        videoSrc={assetPath("/Shloka.mp4")}
+        images={[
+          assetPath("/Shloka1.jpeg"),
+          assetPath("/Shloka2.jpeg"),
+          assetPath("/Shloka3.jpeg"),
+          assetPath("/Shloka4.jpeg"),
+          assetPath("/Shloka5.jpeg"),
+        ]}
+      />
       <ProductCategories />
       <BrandHighlights />
       <InstagramCTA />

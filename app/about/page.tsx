@@ -9,16 +9,29 @@ import { assetPath } from "@/lib/asset-path"
 export default function AboutPage() {
   return (
     <main className="overflow-x-hidden">
-      {/* Hero */}
-      <section className="opacity-100">
-        <div className="pt-12 pb-8 mx-auto max-w-6xl px-4 text-center">
-          <h1 className="text-pretty text-4xl md:text-6xl font-bold leading-tight text-foreground">Our Journey of Innovation and Elegance</h1>
-          <p className="mt-6 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Auri Concept stands at the intersection of sophisticated design and groundbreaking technology — crafting
-            environments that inspire, comfort, and empower.
-          </p>
-          <p className="mt-6 text-sm text-muted-foreground">We design spaces that speak luxury &amp; innovation ⚡</p>
-          <p className="text-sm text-muted-foreground">Lights • Fans • Smart Controls • Door Locks 💡</p>
+      {/* Animated Hero Section - visually matches homepage */}
+      <section className="relative">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 md:py-16">
+          <div className="flex flex-col justify-center order-last md:order-first transition-opacity transition-transform duration-700 ease-out opacity-100 translate-y-0">
+            <h1 className="text-pretty text-4xl md:text-6xl font-bold leading-tight text-foreground">Our Journey of Innovation and Elegance</h1>
+            <p className="mt-6 text-muted-foreground max-w-3xl leading-relaxed">
+              Auri Concept stands at the intersection of sophisticated design and groundbreaking technology — crafting environments that inspire, comfort, and empower.
+            </p>
+            <p className="mt-6 text-sm text-muted-foreground">Where Innovation Meets Elegance ⚡</p>
+            <span className="mt-3 inline-block rounded bg-primary/10 px-3 py-1 font-semibold text-primary shadow-sm ring-1 ring-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:ring-primary/40 transition-colors text-base">
+              Lights • Fans • Smart Controls • Door Locks
+            </span>
+          </div>
+          <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-border order-first md:order-last transition-opacity transition-transform duration-700 ease-out opacity-100 translate-y-0">
+            <Image
+              src={assetPath("/hero-image.png")}
+              alt="Auri Concept hero image"
+              width={1200}
+              height={900}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
         </div>
       </section>
 

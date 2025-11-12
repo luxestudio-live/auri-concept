@@ -80,14 +80,11 @@ export function SocialLinks() {
       <SocialLinkItem href="https://www.instagram.com/auriconcept_/" label="Instagram">
     <SocialIcon name="instagram" className="w-5 h-5" />
       </SocialLinkItem>
-      <SocialLinkItem href="https://www.facebook.com/auriconcept" label="Facebook">
-    <SocialIcon name="facebook" className="w-5 h-5" />
+      <SocialLinkItem href="https://www.facebook.com/share/1BGNLJjrWD/?mibextid=wwXIfr" label="Facebook">
+        <SocialIcon name="facebook" className="w-5 h-5" />
       </SocialLinkItem>
-      <SocialLinkItem href="https://www.linkedin.com/company/auriconcept" label="LinkedIn">
-    <SocialIcon name="linkedin" className="w-5 h-5" />
-      </SocialLinkItem>
-      <SocialLinkItem href="https://www.youtube.com/channel/UCauriconcept" label="YouTube">
-    <SocialIcon name="youtube" className="w-5 h-5" />
+      <SocialLinkItem href="https://www.linkedin.com/in/amit-shah-927680179" label="LinkedIn">
+        <SocialIcon name="linkedin" className="w-5 h-5" />
       </SocialLinkItem>
       <SocialLinkItem href="https://wa.me/919819355577" label="WhatsApp">
     <SocialIcon name="whatsapp" className="w-5 h-5" />

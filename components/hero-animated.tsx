@@ -23,7 +23,7 @@ export default function HeroAnimated() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 md:py-16">
         <div className={`flex flex-col justify-center order-last md:order-first ${baseTransition} md:opacity-100 ${mounted ? visible : hidden}`}>
           <h1 className="text-pretty text-3xl font-semibold leading-tight md:text-5xl">
-            We design spaces that speak luxury {"&"} innovation
+            Where Innovation Meets Elegance.
           </h1>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Lighting, comfort, and security—curated for modern living. Discover high-end products engineered to
