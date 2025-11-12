@@ -39,7 +39,7 @@ export default function FeaturedProductZoom({
                 onClick={() => setModal({ type: "video", src: videoSrc })}
                 aria-label={`Open ${productName} video`}
                 className="rounded-lg overflow-hidden border border-border shadow focus:outline-none focus:ring-2 focus:ring-primary/40 bg-black"
-                style={{ width: 420, maxWidth: '100%' }}
+                style={{ width: '100%', maxWidth: 420 }}
               >
                 <video
                   src={videoSrc}
@@ -47,8 +47,8 @@ export default function FeaturedProductZoom({
                   loop
                   muted
                   playsInline
-                  className="w-[420px] h-[560px] object-cover bg-black block"
-                  style={{ aspectRatio: '3/4', maxHeight: 560, minHeight: 420 }}
+                  className="w-full h-auto aspect-[3/4] object-cover bg-black block max-h-[60vw] md:max-h-[560px]"
+                  style={{ maxHeight: 560, minHeight: 220 }}
                 />
               </button>
             </div>
@@ -56,8 +56,10 @@ export default function FeaturedProductZoom({
 
           {/* Images column - 2 per row, small, total height matches video */}
           <div className="flex-1 flex flex-col justify-center">
-            <div className="grid grid-cols-2 gap-2 bg-background p-1 rounded-lg items-stretch"
-                 style={{ height: 560, maxHeight: 560, minHeight: 420 }}>
+            <div
+              className="grid grid-cols-2 gap-2 bg-background p-1 rounded-lg items-stretch"
+              style={{ height: 'auto', maxHeight: 560, minHeight: 120 }}
+            >
               {images.map((img, i) => (
                 <div
                   key={img}

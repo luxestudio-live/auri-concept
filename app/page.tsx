@@ -1,50 +1,10 @@
 import React from "react"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
-// ...existing code...
 import { AutoCarousel } from "@/components/auto-carousel"
 import FeaturedProductZoom from "@/components/featured-product-zoom"
 import { assetPath } from "@/lib/asset-path"
-
-function Header() {
-  return (
-    <header className="border-b border-border">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="flex items-center gap-2" aria-label="Auri Concept Home">
-          <div className="flex items-center">
-            <img 
-              src={assetPath("/auri-logo.svg")}
-              alt="" 
-              className="h-8 w-auto"
-              style={{ maxWidth: '120px' }}
-            />
-          </div>
-          <span className="text-xl font-semibold" style={{ color: '#1F2937' }}>Concept</span>
-        </Link>
-        <nav className="flex items-center gap-3"> 
-          <Link href="#about" className="text-sm hover:underline">
-            About
-          </Link>
-          <Link href="#contact" className="text-sm hover:underline">
-            Contact
-          </Link>
-          <Button asChild className="ml-1">
-            <a
-              href="https://www.instagram.com/auriconcept_/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit Auri Concept Instagram"
-            >
-              Instagram
-            </a>
-          </Button>
-        </nav>
-      </div>
-    </header>
-  )
-}
-
 import HeroWrapper from "@/components/hero-wrapper"
 
 function Hero() {
@@ -362,7 +322,7 @@ const categories: Category[] = [
 
 function AutomationSection() {
   // Use a vertical/portrait video for automation
-  const videoSrc = assetPath("/Automation Video.mp4");
+  const videoSrc = assetPath("/Automation-Video.mp4");
   return (
     <section className="border-t border-border bg-card" id="automation-section">
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 flex flex-col md:flex-row gap-8 items-center">

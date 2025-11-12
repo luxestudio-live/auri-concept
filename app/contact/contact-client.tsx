@@ -10,11 +10,20 @@ import { toast } from "@/components/ui/use-toast"
 import { motion } from "framer-motion"
 
 function ContactCard({ title, subtitle, actionText, href, icon }: Readonly<{ title: string; subtitle: string; actionText: string; href: string; icon: string }>) {
+  // Special styling for email address
+  const isEmail = title.toLowerCase().includes("email");
   return (
     <div className="rounded-lg border border-border bg-card p-6 text-center hover:shadow-md transition-shadow">
       <div className="text-primary text-3xl mb-3">{icon}</div>
       <h4 className="font-semibold text-lg text-card-foreground">{title}</h4>
-      <p className="mt-2 text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">{subtitle}</p>
+      <p
+        className={
+          `mt-2 text-sm text-muted-foreground leading-relaxed ${isEmail ? 'break-all text-center text-[13px] md:text-sm font-medium' : 'whitespace-pre-wrap'}`
+        }
+        style={isEmail ? { wordBreak: 'break-all', lineHeight: 1.3 } : {}}
+      >
+        {subtitle}
+      </p>
       <div className="mt-4">
         <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium hover:underline transition-colors">
           {actionText}
@@ -103,7 +112,7 @@ export default function ContactClientPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <ContactCard icon="✉️" title="Email Address" subtitle="info@auriconcept.com" actionText="Send Email" href="mailto:info@auriconcept.com" />
-                  <ContactCard icon="📍" title="Showroom & Office" subtitle={"Unit no 205, bldg no.5, Jogani industrial premises, V.N.Purav Marg, Sion (E)- Chunabhatti, Maharashtra, India, 400022"} actionText="View on Map" href="https://maps.app.goo.gl/UfDvKTPQNxAnpx2P9" />
+                  <ContactCard icon="📍" title="Showroom & Office" subtitle={"Unit no 12, bldg no.5, Jogani industrial premises, V.N.Purav Marg, Sion (E)- Chunabhatti, Maharashtra, India, 400022"} actionText="View on Map" href="https://maps.app.goo.gl/UfDvKTPQNxAnpx2P9" />
                 </div>
 
                 <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
