@@ -4,16 +4,12 @@
  * In development: /image.jpg
  */
 export function assetPath(path: string): string {
-  // Use NEXT_PUBLIC_BASE_PATH if set, fallback to Next.js basePath if available, else empty string
+  // Only use NEXT_PUBLIC_BASE_PATH if explicitly set (for project pages)
   let basePath = ''
   if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_BASE_PATH) {
     basePath = process.env.NEXT_PUBLIC_BASE_PATH
-  } else if (typeof process !== 'undefined' && process.env.NEXT_BASE_PATH) {
-    basePath = process.env.NEXT_BASE_PATH
-  } else if (typeof process !== 'undefined' && process.env.NODE_ENV === 'production') {
-    basePath = '/auri-concept'
   }
-  // Ensure no double slashes
+  // For custom domains, basePath should be empty
   let url = `${basePath}${path}`
   url = url.replace(/\/+/g, '/').replace(':/', '://')
   return url
