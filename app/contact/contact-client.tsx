@@ -100,17 +100,11 @@ export default function ContactClientPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <ContactCard icon="📱" title="Personal Number" subtitle="+91 98193 55577" actionText="Message Us" href="https://wa.me/919819355577" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <ContactCard icon="📱" title="WhatsApp Number" subtitle="+91 98193 55577" actionText="Message Us" href="https://wa.me/919819355577" />
                   <ContactCard icon="📞" title="Personal Phone" subtitle="+91 98193 55577" actionText="Call Us" href="tel:+919819355577" />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
                   <ContactCard icon="🏢" title="Office Number" subtitle="+91 91677 54524" actionText="Call Office" href="tel:+919167754524" />
                   <ContactCard icon="🏢" title="Office Number" subtitle="+91 85911 15736" actionText="Call Office" href="tel:+918591115736" />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
                   <ContactCard icon="✉️" title="Email Address" subtitle="info@auriconcept.com" actionText="Send Email" href="mailto:info@auriconcept.com" />
                   <ContactCard icon="📍" title="Showroom & Office" subtitle={"Unit no 12, bldg no.5, Jogani industrial premises, V.N.Purav Marg, Sion (E)- Chunabhatti, Maharashtra, India, 400022"} actionText="View on Map" href="https://maps.app.goo.gl/UfDvKTPQNxAnpx2P9" />
                 </div>

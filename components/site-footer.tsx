@@ -26,11 +26,11 @@ export function SiteFooter() {
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
             <SocialLinks />
             <a 
-              href="mailto:hello@auriconcept.com" 
+              href="mailto:info@auriconcept.com" 
               className="text-xs hover:underline break-all sm:break-normal" 
               aria-label="Email Auri Concept"
             >
-              hello@auriconcept.com
+              info@auriconcept.com
             </a>
           </div>
         </div>

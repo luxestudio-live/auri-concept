@@ -535,7 +535,7 @@ function ContactCTA() {
           </div>
           <div className="flex gap-3 md:justify-end">
             <Button asChild variant="secondary">
-              <a href="mailto:hello@auriconcept.com" aria-label="Email Auri Concept">
+              <a href="mailto:info@auriconcept.com" aria-label="Email Auri Concept">
                 Email Us
               </a>
             </Button>
@@ -666,7 +666,7 @@ function Footer() {
         <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Auri Concept. All rights reserved.</p>
         <div className="flex items-center gap-5">
           <SocialLinks />
-          <a href="mailto:hello@auriconcept.com" className="text-xs hover:underline">
+          <a href="mailto:info@auriconcept.com" className="text-xs hover:underline">
             Email
           </a>
         </div>

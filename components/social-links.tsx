@@ -13,26 +13,15 @@ export function SocialIcon({
   switch (name) {
     case "instagram":
       return (
-        <svg className={className} viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <rect x="3" y="3" width="18" height="18" rx="5" {...strokeProps} />
-          <circle cx="12" cy="12" r="3.5" {...strokeProps} />
-          <circle cx="17.5" cy="6.5" r="1" {...strokeProps} />
-        </svg>
+        <img src={require("@/lib/asset-path").assetPath("/instagram.png")} alt="Instagram" className={className + " object-contain"} />
       )
     case "facebook":
       return (
-        <svg className={className} viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <path d="M13 10h3V7h-3a3 3 0 0 0-3 3v3H7v3h3v6h3v-6h3l1-3h-4v-3a1 1 0 0 1 1-1Z" {...strokeProps} />
-        </svg>
+        <img src={require("@/lib/asset-path").assetPath("/facebook.png")} alt="Facebook" className={className + " object-contain"} />
       )
     case "linkedin":
       return (
-        <svg className={className} viewBox="0 0 24 24" aria-hidden="true" fill="none">
-          <rect x="3" y="3" width="18" height="18" rx="2" {...strokeProps} />
-          <path d="M8 17v-6" {...strokeProps} />
-          <circle cx="8" cy="8" r="1" {...strokeProps} />
-          <path d="M12 17v-3.5a2.5 2.5 0 0 1 5 0V17" {...strokeProps} />
-        </svg>
+        <img src={require("@/lib/asset-path").assetPath("/linkedin.png")} alt="LinkedIn" className={className + " object-contain"} />
       )
     case "youtube":
       return (
@@ -46,7 +35,7 @@ export function SocialIcon({
       )
     case "whatsapp":
       return (
-        <img src={require("@/lib/asset-path").assetPath("/whatsapp.png")} alt="WhatsApp" className={className} />
+        <img src={require("@/lib/asset-path").assetPath("/whatsapp.png")} alt="WhatsApp" className={className + " object-contain"} />
       )
   }
 }
