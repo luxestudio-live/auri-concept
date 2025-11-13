@@ -82,8 +82,13 @@ export default function ContactClientPage() {
       >
         <div className="mx-auto max-w-6xl px-4">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Get in Touch with Auri Concept
+            <h1 className="text-4xl md:text-5xl font-bold text-center">
+              Get in Touch with
+              <br />
+              <span className="inline-flex items-center justify-center mt-2">
+                <span className="font-serif text-[#c0392b] tracking-wide text-4xl md:text-5xl font-extrabold" style={{letterSpacing: '0.05em'}}>AURI</span>
+                <span className="ml-2 font-serif text-[#c0392b] tracking-wide text-4xl md:text-5xl font-extrabold" style={{letterSpacing: '0.05em'}}>CONCEPT</span>
+              </span>
             </h1>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
               Have questions about our products? We're here to help you transform your space.

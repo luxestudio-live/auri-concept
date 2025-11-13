@@ -282,6 +282,13 @@ const categories: Category[] = [
     images: [assetPath("/Qlick1.png"), assetPath("/Qlick2.jpg")],
     altTexts: ["Qlick Smart Lock product image 1", "Qlick Smart Lock product image 2"],
   },
+  {
+    key: "Kaama Lights",
+    title: "Smart Lock",
+    desc: "Quick, secure, and stylish—Qlick Smart Lock brings peace of mind and modern aesthetics to your entryways.",
+    images: [assetPath("/SmartLock1.jpeg"), assetPath("/SmartLock2.jpeg"),assetPath("/SmartLock3.jpeg")],
+    altTexts: ["Qlick Smart Lock product image 1", "Qlick Smart Lock product image 2"],
+  },
   // {
   //   key: "Eureka Lights",
   //   title: "Smart Automation",
