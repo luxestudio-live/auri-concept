@@ -11,6 +11,7 @@ import { assetPath } from "@/lib/asset-path"
 import { type Category } from "@/lib/categories-data"
 import { getAllProducts } from "@/lib/products-helper"
 import HeroWrapper from "@/components/hero-wrapper"
+import { TestimonialsSection } from "@/components/testimonials-section"
 
 function Hero() {
   return <HeroWrapper />
@@ -593,6 +594,7 @@ export default function HomePage() {
         ]}
       />
       <ProductCategories />
+      <TestimonialsSection />
       <BrandHighlights />
       <InstagramCTA />
       <ContactCTA />
