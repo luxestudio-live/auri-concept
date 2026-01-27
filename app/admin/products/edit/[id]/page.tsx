@@ -170,13 +170,59 @@ export default function EditProductPage() {
     setIsSaving(true)
 
     try {
+      // Function to compress image before upload
+      const compressImage = (file: File): Promise<File> => {
+        return new Promise((resolve) => {
+          const reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = (event) => {
+            const img = new Image()
+            img.src = event.target?.result as string
+            img.onload = () => {
+              const canvas = document.createElement("canvas")
+              let { width, height } = img
+              
+              // Resize if too large
+              const maxWidth = 1920
+              const maxHeight = 1080
+              if (width > maxWidth || height > maxHeight) {
+                const ratio = Math.min(maxWidth / width, maxHeight / height)
+                width *= ratio
+                height *= ratio
+              }
+              
+              canvas.width = width
+              canvas.height = height
+              const ctx = canvas.getContext("2d")!
+              ctx.drawImage(img, 0, 0, width, height)
+              
+              canvas.toBlob(
+                (blob) => {
+                  if (blob) {
+                    const compressedFile = new File([blob], file.name, { type: "image/jpeg" })
+                    resolve(compressedFile)
+                  } else {
+                    resolve(file)
+                  }
+                },
+                "image/jpeg",
+                0.85 // 85% quality
+              )
+            }
+          }
+        })
+      }
+
       const uploadedImageUrls: string[] = [...imageUrls]
       const finalAltTexts: string[] = [...formData.altTexts]
 
       // Upload new images to Cloudinary
       for (let i = 0; i < newImages.length; i++) {
+        // Compress before upload
+        const compressedFile = await compressImage(newImages[i])
+        
         const formDataObj = new FormData()
-        formDataObj.append("file", newImages[i])
+        formDataObj.append("file", compressedFile)
 
         const response = await fetch("/api/cloudinary-upload", {
           method: "POST",

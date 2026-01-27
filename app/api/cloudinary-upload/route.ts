@@ -12,6 +12,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 })
     }
 
+    // Check file size - Vercel has limits
+    if (file.size > 10000000) {
+      return NextResponse.json({ error: "File too large. Maximum 10MB." }, { status: 413 })
+    }
+
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
@@ -21,6 +26,7 @@ export async function POST(req: NextRequest) {
           folder: "auri-concept/products",
           resource_type: "image",
           overwrite: false,
+          max_file_size: 10000000,
         },
         (error, result) => {
           if (error || !result) {
