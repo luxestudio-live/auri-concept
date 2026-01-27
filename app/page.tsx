@@ -199,7 +199,7 @@ function ProductCategories() {
             Our Product Categories
           </h2>
           <Button asChild variant="outline">
-            <a href="#contact" aria-label="Contact for product inquiries">
+            <a href="/contact" aria-label="Contact for product inquiries">
               Request a Catalog
             </a>
           </Button>
