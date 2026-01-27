@@ -1,330 +1,20 @@
-import React from "react"
+"use client"
+
+import React, { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AutoCarousel } from "@/components/auto-carousel"
 import FeaturedProductZoom from "@/components/featured-product-zoom"
 import { assetPath } from "@/lib/asset-path"
+import { type Category } from "@/lib/categories-data"
+import { getAllProducts } from "@/lib/products-helper"
 import HeroWrapper from "@/components/hero-wrapper"
 
 function Hero() {
   return <HeroWrapper />
 }
-
-
-type Category = {
-  key: string
-  title: string
-  desc: string
-  images: string[]
-  altTexts: string[]
-}
-
-const categories: Category[] = [
-  {
-    key: "Pernia Lights",
-    title: "Pernia Lights",
-    desc: "Pernia Lights infuse your spaces with refined brilliance, offering architectural lighting that elevates every environment to a new level of luxury.",
-    images: [assetPath("/Pernia1.jpeg"), assetPath("/Pernia2.jpeg")],
-    altTexts: ["Pernia Lights product image 1", "Pernia Lights product image 2"],
-  },
-  {
-    key: "Viona Lights",
-    title: "Viona Lights",
-    desc: "Viona Lights blend silent performance with exquisite finishes, creating a serene and sophisticated ambiance for the modern home.",
-    images: [assetPath("/Viona1.jpeg"), assetPath("/Viona2.jpeg"), assetPath("/Viona3.jpeg")],
-    altTexts: ["Viona Lights product image 1", "Viona Lights product image 2", "Viona Lights product image 3"],
-  },
-  {
-    key: "Vatica Lights",
-    title: "Vatica Lights",
-    desc: "Vatica Lights deliver seamless control and contemporary design, with intuitive dimming and smart automation for every mood and occasion.",
-    images: [assetPath("/Vatica1.jpeg"), assetPath("/Vatica2.jpeg"), assetPath("/Vatica3.jpeg")],
-    altTexts: ["Vatica Lights product image 1", "Vatica Lights product image 2", "Vatica Lights product image 3"],
-  },
-  {
-    key: "Tiara Lights",
-    title: "Tiara Lights",
-    desc: "Tiara Lights transform interiors with radiant beauty and architectural flair, perfect for those who seek to inspire and impress.",
-    images: [assetPath("/Tiara1.jpeg"), assetPath("/Tiara2.jpeg"), assetPath("/Tiara3.jpeg")],
-    altTexts: ["Tiara Lights product image 1", "Tiara Lights product image 2", "Tiara Lights product image 3"],
-  },
-  {
-    key: "Yesha Lights",
-    title: "Yesha Lights",
-    desc: "Yesha Lights are crafted for discerning tastes, offering whisper-quiet operation and a luxurious aesthetic for refined living.",
-    images: [assetPath("/Yesha1.jpeg"), assetPath("/Yesha2.jpeg"), assetPath("/Yesha3.jpeg"), assetPath("/Yesha4.jpeg")],
-    altTexts: ["Yesha Lights product image 1", "Yesha Lights product image 2", "Yesha Lights product image 3", "Yesha Lights product image 4"],
-  },
-
-  {
-    key: "Elara Lights",
-    title: "Elara Lights",
-    desc: "Elara Lights embody elegance and tranquility, designed for those who appreciate both comfort and sophisticated style.",
-    images: [assetPath("/Elara1.jpeg"), assetPath("/Elara2.jpeg"), assetPath("/Elara3.jpeg"), assetPath("/Elara4.jpeg")],
-    altTexts: [
-      "Elara Lights product image 1",
-      "Elara Lights product image 2",
-      "Elara Lights product image 3",
-      "Elara Lights product image 4",
-    ],
-  },
-  {
-    key: "Persia Lights",
-    title: "Persia Lights",
-    desc: "Persia Lights offer a harmonious blend of luxury and performance, illuminating spaces with timeless grace and modern refinement.",
-    images: [assetPath("/Persia1.jpeg"), assetPath("/Persia2.jpeg"), assetPath("/Persia3.jpeg"), assetPath("/Persia4.jpeg")],
-    altTexts: [
-      "Persia Lights product image 1",
-      "Persia Lights product image 2",
-      "Persia Lights product image 3",
-      "Persia Lights product image 4",
-    ],
-  },
-  {
-    key: "Freya Lights",
-    title: "Freya Lights",
-    desc: "Freya Lights bring smart living to life, with intuitive automation and scene control for a seamlessly connected home.",
-    images: [assetPath("/Freya1.jpeg"), assetPath("/Freya2.jpeg")],
-    altTexts: ["Freya Lights product image 1", "Freya Lights product image 2"],
-  },
-  {
-    key: "Breeza Lights",
-    title: "Breeza Lights",
-    desc: "Breeza Lights redefine simplicity and intelligence, offering effortless automation and elegant scene control for every lifestyle.",
-    images: [assetPath("/Breeza1.jpeg"), assetPath("/Breeza2.jpeg")],
-    altTexts: ["Breeza Lights product image 1", "Breeza Lights product image 2"],
-  },
-  {
-    key: "Strip Lights",
-    title: "Strip Lights",
-    desc: "Strip Lights add a touch of modern sophistication, delivering flexible illumination and a premium finish to any setting.",
-    images: [assetPath("/StripLight1.jpeg"), assetPath("/StripLight2.jpeg"), assetPath("/StripLight3.jpeg"), assetPath("/StripLight4.jpeg")],
-    altTexts: [
-      "Strip Lights product image 1",
-      "Strip Lights product image 2",
-      "Strip Lights product image 3",
-      "Strip Lights product image 4",
-    ],
-  },
-  {
-    key: "Driver/SMPS",
-    title: "Driver/SMPS",
-    desc: "Driver/SMPS solutions ensure reliable, efficient power delivery for your lighting systems, engineered for lasting performance and safety.",
-    images: [assetPath("/Gamma1.jpeg"), assetPath("/Gamma2.jpeg"), assetPath("/Gamma3.jpeg")],
-    altTexts: [
-      "Gamma Lights product image 1",
-      "Gamma Lights product image 2",
-      "Gamma Lights product image 3",
-    ],
-  },
-  {
-    key: "Rope Lights",
-    title: "Rope Lights",
-    desc: "Rope Lights offer versatile, ambient illumination, perfect for accentuating architectural features with a premium glow.",
-    images: [assetPath("/RopeLight1.jpeg"), assetPath("/RopeLight2.jpeg"), assetPath("/RopeLight3.jpeg"), assetPath("/RopeLight4.jpeg")],
-    altTexts: [
-      "Rope Lights product image 1",
-      "Rope Lights product image 2",
-      "Rope Lights product image 3",
-    ],
-  },
-  {
-    key: "Wall Lights",
-    title: "Wall Lights",
-    desc: "Wall Lights combine premium design with efficient illumination, enhancing interiors with subtle elegance and modern appeal.",
-    images: [assetPath("/Corea1.jpeg"), assetPath("/Corea2.jpeg")],
-    altTexts: ["Corea Lights product image 1", "Corea Lights product image 2"],
-  },
-  {
-    key: "Wall Lights",
-    title: "Wall Lights",
-    desc: "Wall Lights combine premium design with efficient illumination, enhancing interiors with subtle elegance and modern appeal.",
-    images: [assetPath("/Haina1.jpeg"), assetPath("/Haina2.jpeg")],
-    altTexts: ["Haina Lights product image 1", "Haina Lights product image 2"],
-  },
-  {
-    key: "Wall Lights",
-    title: "Wall Lights",
-    desc: "Wall Lights combine premium design with efficient illumination, enhancing interiors with subtle elegance and modern appeal.",
-    images: [assetPath("/Kaama1.jpeg"), assetPath("/Kaama2.jpeg")],
-    altTexts: ["kaama Lights product image 1", "kaama Lights product image 2"],
-  },
-  {
-    key: "Wall Lights",
-    title: "Wall Solar Lights",
-    desc: "Wall Solar Lights offer sustainable, stylish lighting solutions, harnessing solar power for eco-friendly elegance.",
-    images: [assetPath("/Kiaora1.jpeg"), assetPath("/Kiaora2.jpeg"), assetPath("/Limca1.jpeg")],
-    altTexts: ["Kiora Lights product image 1", "Kiora Lights product image 2"],
-  },
-  {
-    key: "Bollard Lights",
-    title: "Bollard Lights",
-    desc: "Bollard Lights provide robust, contemporary outdoor illumination, perfect for pathways and landscapes that demand distinction.",
-    images: [assetPath("/Kymaa1.jpeg"), assetPath("/Kymaa2.jpeg")],
-    altTexts: ["Kymaa Lights product image 1", "Kymaa Lights product image 2"],
-  },
-  {
-    key: "Bollard Lights",
-    title: "Bollard Solar Lights",
-    desc: "Bollard Solar Lights combine modern design with sustainable technology, lighting outdoor spaces with effortless sophistication.",
-    images: [assetPath("/Kea1.jpeg"), assetPath("/Kea2.jpeg")],
-    altTexts: ["Kea Lights product image 1", "Kea Lights product image 2"],
-  },
-  {
-    key: "Bollard Lights",
-    title: "Bollard Lights",
-    desc: "Bollard Lights provide robust, contemporary outdoor illumination, perfect for pathways and landscapes that demand distinction.",
-    images: [assetPath("/Mamba1.jpeg"), assetPath("/Mamba2.jpeg")],
-    altTexts: ["Mamba Lights product image 1", "Mamba Lights product image 2"],
-  },
-  {
-    key: "Bollard Lights",
-    title: "Bollard Lights",
-    desc: "Bollard Lights provide robust, contemporary outdoor illumination, perfect for pathways and landscapes that demand distinction.",
-    images: [assetPath("/Jariva1.jpeg"), assetPath("/Jariva2.jpeg")],
-    altTexts: ["jariva Lights product image 1", "jariva Lights product image 2"],
-  },
-  {
-    key: "Gate Lights",
-    title: "Gate Lights",
-    desc: "Gate Lights welcome you home with a statement of prestige, combining security and style for a grand entrance.",
-    images: [assetPath("/Tresa1.jpeg"), assetPath("/Tresa2.jpeg")],
-    altTexts: ["Tresa Lights product image 1", "Tresa Lights product image 2"],
-  },
-  {
-    key: "Garden Lights",
-    title: "Garden Lights",
-    desc: "Garden Lights illuminate outdoor spaces with refined charm, creating enchanting landscapes for elegant evenings.",
-    images: [assetPath("/Fiesta1.jpeg"), assetPath("/Fiesta2.jpeg")],
-    altTexts: ["Fiesta Lights product image 1", "Fiesta Lights product image 2"],
-  },
-  {
-    key: "Garden Lights",
-    title: "Garden Lights",
-    desc: "Garden Lights illuminate outdoor spaces with refined charm, creating enchanting landscapes for elegant evenings.",
-    images: [assetPath("/Shanaya1.jpeg"), assetPath("/Shanaya2.jpeg"),assetPath("/Hydra1.jpeg")],
-    altTexts: ["Shanaya Lights product image 1", "Shanaya Lights product image 2"],
-  },
-  // {
-  //   key: "Hydra & Limca Lights",
-  //   title: "Hydra & Limca Lights",
-  //   desc: "Premium airflow and stunning design—Hydra & Limca Lights redefine comfort with silent, efficient technology.",
-  //   images: [assetPath("/Hydra1.jpeg"), assetPath("/Limca1.jpeg")],
-  //   altTexts: ["jariva Lights product image 1", "jariva Lights product image 2"],
-  // },
-  {
-    key: "Wires & Cabels",
-    title: "Wires & Cabels",
-    desc: "Wires & Cabels by Vaaya deliver secure, innovative connectivity, engineered for reliability and a flawless finish in every installation.",
-    images: [assetPath("/Wire1.jpeg"), assetPath("/Wire2.jpeg"), assetPath("/Wire3.jpeg"), assetPath("/Wire4.jpeg")],
-    altTexts: [
-      "Vaaya Wire product image 1",
-      "Vaaya Wire product image 2",
-      "Vaaya Wire product image 3",
-      "Vaaya Wire product image 4",
-    ],
-  },
-  {
-    key: "Wires & Cabels",
-    title: "Wires & Cabels",
-    desc: "Wires & Cabels by Vaaya deliver secure, innovative connectivity, engineered for reliability and a flawless finish in every installation.",
-    images: [assetPath("/Wire5.jpeg"), assetPath("/Wire6.jpeg"), assetPath("/Wire7.jpeg"), assetPath("/Wire8.jpeg")],
-    altTexts: [
-      "Vaaya Wire product image 1",
-      "Vaaya Wire product image 2",
-      "Vaaya Wire product image 3",
-      "Vaaya Wire product image 4",
-    ],
-  },
-
-
-
-  {
-    key: "Mamba Lights",
-    title: "Switches",
-    desc: "Switches that combine intuitive design with advanced automation, offering seamless control and a premium tactile experience.",
-    images: [assetPath("/Switch1.jpg"), assetPath("/Switch2.jpg"), assetPath("/Switches1.jpeg"), assetPath("/Switches2.jpeg")],
-    altTexts: ["Switches product image 1", "Switches product image 2"],
-  },
-  {
-    key: "Kaama Lights",
-    title: "Smart Switches & Automation",
-    desc: "Smart Switches & Automation elevate your home with intelligent, elegant solutions for effortless living and total control.",
-    images: [assetPath("/SSwitch1.jpg"),assetPath("/smartliving1.jpg"), assetPath("/smartliving2.jpg"), assetPath("/SSwitch2.jpg"), assetPath("/SSwitches1.jpeg"), assetPath("/SSwitches2.jpeg"), assetPath("/SSwitches3.jpeg")],
-    altTexts: ["Smart Switches product image 1", "Smart Switches product image 2"],
-  },
-  {
-    key: "Fans",
-    title: "Smart Fans",
-    desc: "Smart Fans deliver silent, energy-efficient airflow with premium finishes, redefining comfort and style for your interiors.",
-    images: [assetPath("/Atomberg1.png"), assetPath("/Atomberg2.png")],
-    altTexts: ["Smart Fans product image 1", "Smart Fans product image 2"],
-  },
-  {
-    key: "Platina Lights",
-    title: "Smart Fans",
-    desc: "Smart Fans deliver silent, energy-efficient airflow with premium finishes, redefining comfort and style for your interiors.",
-    images: [assetPath("/Atomberg3.png"), assetPath("/Atomberg4.png")],
-    altTexts: ["Smart Fans product image 3", "Smart Fans product image 4"],
-  },
-  {
-    key: "Mamba Lights",
-    title: "Altis Smart Lock",
-    desc: "Altis Smart Lock unites advanced security with contemporary design, protecting your home with intelligence and elegance.",
-    images: [assetPath("/Atlis1.png"), assetPath("/Atlis2.png")],
-    altTexts: ["Altis Smart Lock product image 1", "Altis Smart Lock product image 2"],
-  },
-  {
-    key: "Kaama Lights",
-    title: "Qlick Smart Lock",
-    desc: "Qlick Smart Lock offers quick, secure access with a modern aesthetic, bringing peace of mind and style to your entryways.",
-    images: [assetPath("/Qlick1.png"), assetPath("/Qlick2.jpg")],
-    altTexts: ["Qlick Smart Lock product image 1", "Qlick Smart Lock product image 2"],
-  },
-  {
-    key: "Kaama Lights",
-    title: "Smart Lock",
-    desc: "Smart Lock solutions deliver advanced protection and sleek design, ensuring your home is both secure and sophisticated.",
-    images: [assetPath("/SmartLock1.jpeg"), assetPath("/SmartLock2.jpeg"),assetPath("/SmartLock3.jpeg")],
-    altTexts: ["Qlick Smart Lock product image 1", "Qlick Smart Lock product image 2"],
-  },
-  // {
-  //   key: "Eureka Lights",
-  //   title: "Smart Automation",
-  //   desc: "Transform your home into a smart haven—our automation solutions integrate lighting, security, and comfort seamlessly.",
-  //   images: [assetPath("/smartliving1.jpg"), assetPath("/smartliving2.jpg")],
-  //   altTexts: ["Smart Automation product image 1", "Smart Automation product image 2"],
-  // },
-  // {
-  //   key: "Platina Lights",
-  //   title: "Premium Lights",
-  //   desc: "Discover the pinnacle of lighting design—Premium Lights combine luxury, performance, and artistry for extraordinary spaces.",
-  //   images: [assetPath("/premium-light1.jpg"), assetPath("/premium-light2.jpg")],
-  //   altTexts: ["Premium Lights product image 1", "Premium Lights product image 2"],
-  // },
-  // {
-  //   key: "Mamba Lights",
-  //   title: "Premium Lights",
-  //   desc: "Experience intuitive control and breathtaking illumination—Premium Lights set the standard for smart, beautiful spaces.",
-  //   images: [assetPath("/premium-light7.jpg"), assetPath("/premium-light8.jpg")],
-  //   altTexts: ["Premium Lights product image 7", "Premium Lights product image 8"],
-  // },
-  // {
-  //   key: "Kaama Lights",
-  //   title: "Premium Lights",
-  //   desc: "Secure, elegant, and innovative—Premium Lights redefine what it means to live in style.",
-  //   images: [assetPath("/premium-light3.jpg"), assetPath("/premium-light4.jpg")],
-  //   altTexts: ["Premium Lights product image 3", "Premium Lights product image 4"],
-  // },
-  // {
-  //   key: "Kaama Lights",
-  //   title: "Premium Lights",
-  //   desc: "Premium Lights are the ultimate choice for discerning homeowners.",
-  //   images: [assetPath("/premium-light5.jpg"), assetPath("/premium-light6.jpg")],
-  //   altTexts: ["Premium Lights product image 5", "Premium Lights product image 6"],
-  // },
- ]
 
 
 function AutomationSection() {
@@ -365,17 +55,146 @@ function AutomationSection() {
 }
 
 function ProductCategories() {
+  const [allCategories, setAllCategories] = useState<Category[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadProducts() {
+      const products = await getAllProducts()
+      setAllCategories(products)
+      setIsLoading(false)
+    }
+    loadProducts()
+  }, [])
+
+  if (isLoading) {
+    return (
+      <section id="products" className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading products...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   // Find the index of the Smart Switches product
-  const smartSwitchIndex = categories.findIndex(
+  const smartSwitchIndex = allCategories.findIndex(
     (c) => c.title.toLowerCase().includes("smart switch")
   );
   // Split categories before and after Smart Switches
-  const before = smartSwitchIndex === -1 ? categories : categories.slice(0, smartSwitchIndex);
-  const after = smartSwitchIndex === -1 ? [] : categories.slice(smartSwitchIndex);
+  const before = smartSwitchIndex === -1 ? allCategories : allCategories.slice(0, smartSwitchIndex);
+  const after = smartSwitchIndex === -1 ? [] : allCategories.slice(smartSwitchIndex);
+
+  // Group categories by type
+  const categoryGroups = {
+    all: [...before, ...after],
+    lighting: [...before, ...after].filter(c => 
+      (c.title.toLowerCase().includes('light') || c.category?.toLowerCase().includes('light')) && 
+      !c.title.toLowerCase().includes('wall') && 
+      !c.title.toLowerCase().includes('bollard') &&
+      !c.title.toLowerCase().includes('gate') &&
+      !c.title.toLowerCase().includes('garden')
+    ),
+    outdoor: [...before, ...after].filter(c => 
+      c.title.toLowerCase().includes('wall') || 
+      c.title.toLowerCase().includes('bollard') ||
+      c.title.toLowerCase().includes('gate') ||
+      c.title.toLowerCase().includes('garden') ||
+      c.title.toLowerCase().includes('solar') ||
+      c.category?.toLowerCase().includes('wall') ||
+      c.category?.toLowerCase().includes('bollard') ||
+      c.category?.toLowerCase().includes('gate') ||
+      c.category?.toLowerCase().includes('garden') ||
+      c.category?.toLowerCase().includes('outdoor')
+    ),
+    smart: [...before, ...after].filter(c => 
+      c.title.toLowerCase().includes('smart') ||
+      c.title.toLowerCase().includes('switch') ||
+      c.title.toLowerCase().includes('automation') ||
+      c.category?.toLowerCase().includes('smart') ||
+      c.category?.toLowerCase().includes('switch') ||
+      c.category?.toLowerCase().includes('automation')
+    ),
+    accessories: [...before, ...after].filter(c => 
+      c.title.toLowerCase().includes('wire') ||
+      c.title.toLowerCase().includes('cable') ||
+      c.title.toLowerCase().includes('driver') ||
+      c.title.toLowerCase().includes('rope') ||
+      c.title.toLowerCase().includes('strip') ||
+      c.category?.toLowerCase().includes('wire') ||
+      c.category?.toLowerCase().includes('cable') ||
+      c.category?.toLowerCase().includes('accessor')
+    )
+  };
+
+  const renderCategoryGrid = (items: Category[]) => {
+    // Split for automation section insertion
+    const smartSwitchIdx = items.findIndex(c => c.title.toLowerCase().includes("smart switch"));
+    const beforeAuto = smartSwitchIdx === -1 ? items : items.slice(0, smartSwitchIdx);
+    const afterAuto = smartSwitchIdx === -1 ? [] : items.slice(smartSwitchIdx);
+
+    return (
+      <>
+        {beforeAuto.length > 0 && (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 mb-8">
+            {beforeAuto.map((c) => (
+              <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+                <div className="relative">
+                  <div className="aspect-[4/3] w-full overflow-hidden">
+                    <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                  </div>
+                </div>
+                <CardHeader className="pt-2 pb-0">
+                  <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="pb-2">
+                  <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+        
+        {afterAuto.length > 0 && smartSwitchIdx !== -1 && <AutomationSection />}
+        
+        {afterAuto.length > 0 && (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {afterAuto.map((c) => (
+              <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+                <div className="relative">
+                  <div className="aspect-[4/3] w-full overflow-hidden">
+                    <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                  </div>
+                </div>
+                <CardHeader className="pt-2 pb-0">
+                  <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="pb-2">
+                  <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+            <Card className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl flex items-center justify-center min-h-[120px]">
+              <CardHeader className="pt-2 pb-0 w-full text-center">
+                <CardTitle className="text-xl text-foreground">And many more...</CardTitle>
+              </CardHeader>
+              <CardContent className="pb-2 w-full text-center">
+                <p className="leading-relaxed text-foreground/80">Discover even more exclusive products in our full catalog!</p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+      </>
+    );
+  };
+
   return (
     <section id="products" aria-labelledby="products-heading" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <div className="mb-6 flex items-baseline justify-between gap-4">
+        <div className="mb-6 flex items-baseline justify-between gap-4 flex-wrap">
           <h2 id="products-heading" className="text-pretty text-2xl font-semibold md:text-3xl">
             Our Product Categories
           </h2>
@@ -385,55 +204,112 @@ function ProductCategories() {
             </a>
           </Button>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {before.map((c) => (
-            <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
-              <div className="relative">
-                <div className="aspect-[4/3] w-full overflow-hidden">
-                  <AutoCarousel images={c.images} altTexts={c.altTexts} />
-                </div>
-              </div>
-              <CardHeader className="pt-2 pb-0">
-                <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pb-2">
-                <p className="leading-relaxed text-foreground/80">{c.desc}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-      {/* Automation section inserted here */}
-      <AutomationSection />
-      <div className="mx-auto max-w-6xl px-4 pb-12 md:pb-16">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {after.map((c) => (
-            <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
-              <div className="relative">
-                <div className="aspect-[4/3] w-full overflow-hidden">
-                  <AutoCarousel images={c.images} altTexts={c.altTexts} />
-                </div>
-              </div>
-              <CardHeader className="pt-2 pb-0">
-                <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="pb-2">
-                <p className="leading-relaxed text-foreground/80">{c.desc}</p>
-              </CardContent>
-            </Card>
-          ))}
-          {/* Sweet ending card only after all products */}
-          {after.length > 0 && (
-            <Card className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl flex items-center justify-center min-h-[120px]">
-              <CardHeader className="pt-2 pb-0 w-full text-center">
-                <CardTitle className="text-xl text-foreground">And many more...</CardTitle>
-              </CardHeader>
-              <CardContent className="pb-2 w-full text-center">
-                <p className="leading-relaxed text-foreground/80">Discover even more exclusive products in our full catalog!</p>
-              </CardContent>
-            </Card>
-          )}
-        </div>
+
+        <Tabs defaultValue="all" className="w-full">
+          <div className="flex justify-center mb-8">
+            <TabsList className="grid w-full max-w-2xl grid-cols-5 h-auto p-1">
+              <TabsTrigger value="all" className="text-xs sm:text-sm py-2">
+                All Products
+              </TabsTrigger>
+              <TabsTrigger value="lighting" className="text-xs sm:text-sm py-2">
+                Lighting
+              </TabsTrigger>
+              <TabsTrigger value="outdoor" className="text-xs sm:text-sm py-2">
+                Outdoor
+              </TabsTrigger>
+              <TabsTrigger value="smart" className="text-xs sm:text-sm py-2">
+                Smart Home
+              </TabsTrigger>
+              <TabsTrigger value="accessories" className="text-xs sm:text-sm py-2">
+                Accessories
+              </TabsTrigger>
+            </TabsList>
+          </div>
+
+          <TabsContent value="all" className="mt-0">
+            {renderCategoryGrid(categoryGroups.all)}
+          </TabsContent>
+
+          <TabsContent value="lighting" className="mt-0">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {categoryGroups.lighting.map((c) => (
+                <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+                  <div className="relative">
+                    <div className="aspect-[4/3] w-full overflow-hidden">
+                      <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                    </div>
+                  </div>
+                  <CardHeader className="pt-2 pb-0">
+                    <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pb-2">
+                    <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="outdoor" className="mt-0">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {categoryGroups.outdoor.map((c) => (
+                <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+                  <div className="relative">
+                    <div className="aspect-[4/3] w-full overflow-hidden">
+                      <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                    </div>
+                  </div>
+                  <CardHeader className="pt-2 pb-0">
+                    <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pb-2">
+                    <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="smart" className="mt-0">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {categoryGroups.smart.map((c) => (
+                <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+                  <div className="relative">
+                    <div className="aspect-[4/3] w-full overflow-hidden">
+                      <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                    </div>
+                  </div>
+                  <CardHeader className="pt-2 pb-0">
+                    <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pb-2">
+                    <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="accessories" className="mt-0">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {categoryGroups.accessories.map((c) => (
+                <Card key={c.key} className="overflow-hidden bg-card-subtle shadow-none border-none p-2 md:p-3 rounded-2xl">
+                  <div className="relative">
+                    <div className="aspect-[4/3] w-full overflow-hidden">
+                      <AutoCarousel images={c.images} altTexts={c.altTexts} />
+                    </div>
+                  </div>
+                  <CardHeader className="pt-2 pb-0">
+                    <CardTitle className="text-xl text-foreground">{c.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pb-2">
+                    <p className="leading-relaxed text-foreground/80">{c.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </section>
   );

@@ -43,27 +43,38 @@ export default function ContactClientPage() {
     setSubmitted(false)
     const form = e.currentTarget
     const data = new FormData(form)
+
+    const payload = {
+      firstName: data.get("firstName")?.toString() || "",
+      lastName: data.get("lastName")?.toString() || "",
+      email: data.get("email")?.toString() || "",
+      phone: data.get("phone")?.toString() || "",
+      subject: data.get("subject")?.toString() || "",
+      message: data.get("message")?.toString() || "",
+    }
+
     try {
-      const res = await fetch("https://formspree.io/f/xwpakrqn", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
-          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: data,
+        body: JSON.stringify(payload),
       })
-      if (res.ok) {
-        toast?.({
-          title: "Message sent",
-          description: "Thanks! We’ll get back to you shortly.",
-        })
-        setSubmitted(true)
-        form.reset()
-      } else {
-        const result = await res.json()
+
+      if (!res.ok) {
+        const result = await res.json().catch(() => ({}))
         throw new Error(result?.error || "Unknown error")
       }
+
+      toast?.({
+        title: "Message sent",
+        description: "Thanks! We’ll get back to you shortly.",
+      })
+      setSubmitted(true)
+      form.reset()
     } catch (err) {
-      console.error("[formspree] contact-form error:", err)
+      console.error("[contact] submission error:", err)
       toast?.({
         title: "Something went wrong",
         description: "Please try again or reach us via email/phone.",
