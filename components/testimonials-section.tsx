@@ -139,7 +139,7 @@ export function TestimonialsSection() {
         {/* Decorative Elements */}
         <div className="mt-16 pt-12 border-t border-border/40">
           <p className="text-center text-sm text-muted-foreground">
-            Join {testimonials.length}+ satisfied clients who trust Auri Concept
+            Trusted by leading professionals in design, architecture, and interior spaces
           </p>
         </div>
       </div>
