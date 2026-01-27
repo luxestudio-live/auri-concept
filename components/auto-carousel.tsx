@@ -2,6 +2,8 @@
 
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
+import { getOptimizedImageUrl } from "@/lib/image-optimizer"
 
 type AutoCarouselProps = {
   images: string[]
@@ -17,6 +19,7 @@ export function AutoCarousel({ images, altTexts, interval = 2500 }: AutoCarousel
     }, interval)
     return () => clearInterval(timer)
   }, [images.length, interval])
+  const optimizedSrc = getOptimizedImageUrl(images[index])
   return (
     <div className="relative aspect-[4/3] w-full flex items-center justify-center bg-transparent overflow-hidden">
       <AnimatePresence mode="wait">
@@ -28,12 +31,13 @@ export function AutoCarousel({ images, altTexts, interval = 2500 }: AutoCarousel
           transition={{ duration: 1.2, ease: 'easeInOut' }}
           style={{ position: 'absolute', inset: 0, height: '100%', width: '100%' }}
         >
-          <img
-            src={images[index]}
+          <Image
+            src={optimizedSrc}
             alt={altTexts[index]}
-            className="max-h-full max-w-full object-contain rounded transition-all mx-auto"
-            style={{ display: 'block', margin: '0 auto', height: '100%', width: '100%', objectFit: 'contain' }}
-            loading="lazy"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-contain rounded"
+            priority={index === 0}
           />
         </motion.div>
       </AnimatePresence>

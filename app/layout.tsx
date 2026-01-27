@@ -1,11 +1,8 @@
 import React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
-import { FloatingWhatsApp } from "@/components/floating-whatsapp"
-import { PageTransition } from "@/components/page-transition"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AppShell } from "@/components/app-shell"
 
 export const metadata: Metadata = {
   title: "Auri Concept",
@@ -25,19 +22,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-dvh flex flex-col pt-[65px] md:pt-[73px]">
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+      </head>
+      <body className="min-h-dvh flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem={false}
           themes={["light", "dark", "midnight", "warm", "monochrome"]}
         >
-          <SiteHeader />
-          <PageTransition>
-            {children}
-          </PageTransition>
-          <SiteFooter />
-          <FloatingWhatsApp />
+          <AppShell>{children}</AppShell>
         </ThemeProvider>
       </body>
     </html>
