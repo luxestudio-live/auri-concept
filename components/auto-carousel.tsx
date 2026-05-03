@@ -9,9 +9,10 @@ type AutoCarouselProps = {
   images: string[]
   altTexts: string[]
   interval?: number
+  priority?: boolean
 }
 
-export function AutoCarousel({ images, altTexts, interval = 2500 }: AutoCarouselProps) {
+export function AutoCarousel({ images, altTexts, interval = 2500, priority = false }: AutoCarouselProps) {
   const [index, setIndex] = React.useState(0)
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -19,7 +20,20 @@ export function AutoCarousel({ images, altTexts, interval = 2500 }: AutoCarousel
     }, interval)
     return () => clearInterval(timer)
   }, [images.length, interval])
-  const optimizedSrc = getOptimizedImageUrl(images[index])
+
+  const optimizedImages = React.useMemo(
+    () => images.map((src) => getOptimizedImageUrl(src)),
+    [images]
+  )
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || optimizedImages.length < 2) return
+    const nextIndex = (index + 1) % optimizedImages.length
+    const preloaded = new window.Image()
+    preloaded.src = optimizedImages[nextIndex]
+  }, [index, optimizedImages])
+
+  const optimizedSrc = optimizedImages[index]
   return (
     <div className="relative aspect-[4/3] w-full flex items-center justify-center bg-transparent overflow-hidden">
       <AnimatePresence mode="wait">
@@ -37,7 +51,8 @@ export function AutoCarousel({ images, altTexts, interval = 2500 }: AutoCarousel
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-contain rounded"
-            priority={index === 0}
+            priority={priority && index === 0}
+            loading={priority && index === 0 ? "eager" : "lazy"}
           />
         </motion.div>
       </AnimatePresence>

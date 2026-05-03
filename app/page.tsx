@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+import Script from "next/script"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,10 +9,49 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AutoCarousel } from "@/components/auto-carousel"
 import FeaturedProductZoom from "@/components/featured-product-zoom"
 import { assetPath } from "@/lib/asset-path"
-import { type Category } from "@/lib/categories-data"
+import { categories as staticCategories, type Category } from "@/lib/categories-data"
 import { getAllProducts } from "@/lib/products-helper"
 import HeroWrapper from "@/components/hero-wrapper"
 import { TestimonialsSection } from "@/components/testimonials-section"
+
+const PRODUCTS_CACHE_KEY = "auri-products-cache-v1"
+const PRODUCTS_CACHE_TTL_MS = 1000 * 60 * 15
+
+type CachedProductsPayload = {
+  timestamp: number
+  products: Category[]
+}
+
+function readProductsCache(): Category[] | null {
+  if (typeof window === "undefined") return null
+
+  try {
+    const raw = window.localStorage.getItem(PRODUCTS_CACHE_KEY)
+    if (!raw) return null
+
+    const parsed = JSON.parse(raw) as CachedProductsPayload
+    if (!parsed?.timestamp || !Array.isArray(parsed.products)) return null
+
+    const isFresh = Date.now() - parsed.timestamp < PRODUCTS_CACHE_TTL_MS
+    return isFresh ? parsed.products : null
+  } catch {
+    return null
+  }
+}
+
+function writeProductsCache(products: Category[]) {
+  if (typeof window === "undefined") return
+
+  try {
+    const payload: CachedProductsPayload = {
+      timestamp: Date.now(),
+      products,
+    }
+    window.localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(payload))
+  } catch {
+    // Ignore quota or private mode cache errors.
+  }
+}
 
 function Hero() {
   return <HeroWrapper />
@@ -56,19 +96,36 @@ function AutomationSection() {
 }
 
 function ProductCategories() {
-  const [allCategories, setAllCategories] = useState<Category[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [allCategories, setAllCategories] = useState<Category[]>(staticCategories)
+  const [isLoading, setIsLoading] = useState(staticCategories.length === 0)
+  const [isRefreshing, setIsRefreshing] = useState(true)
 
   useEffect(() => {
     async function loadProducts() {
-      const products = await getAllProducts()
-      setAllCategories(products)
-      setIsLoading(false)
+      const cachedProducts = readProductsCache()
+      if (cachedProducts && cachedProducts.length > 0) {
+        setAllCategories(cachedProducts)
+        setIsLoading(false)
+      }
+
+      try {
+        const products = await getAllProducts()
+        if (products.length > 0) {
+          setAllCategories(products)
+          writeProductsCache(products)
+        }
+      } catch (error) {
+        console.error("Failed to refresh products:", error)
+      } finally {
+        setIsLoading(false)
+        setIsRefreshing(false)
+      }
     }
+
     loadProducts()
   }, [])
 
-  if (isLoading) {
+  if (isLoading && allCategories.length === 0) {
     return (
       <section id="products" className="border-t border-border">
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 flex items-center justify-center min-h-[400px]">
@@ -196,9 +253,14 @@ function ProductCategories() {
     <section id="products" aria-labelledby="products-heading" className="border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         <div className="mb-6 flex items-baseline justify-between gap-4 flex-wrap">
-          <h2 id="products-heading" className="text-pretty text-2xl font-semibold md:text-3xl">
-            Our Product Categories
-          </h2>
+          <div>
+            <h2 id="products-heading" className="text-pretty text-2xl font-semibold md:text-3xl">
+              Our Product Categories
+            </h2>
+            {isRefreshing && (
+              <p className="mt-1 text-sm text-muted-foreground">Refreshing latest products...</p>
+            )}
+          </div>
           <Button asChild variant="outline">
             <a href="/contact" aria-label="Contact for product inquiries">
               Request a Catalog
@@ -394,11 +456,12 @@ function InstagramCTA() {
             </Button>
           </div>
           <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-border">
-            <img
-              src={assetPath("/auri-instagram.png")}
-              alt="Auri Concept Instagram grid: luxury lighting and interiors"
-              className="h-full w-full object-cover"
+            <div
+              className="sk-instagram-feed"
+              data-embed-id="25678219"
+              style={{ width: "100%", height: "100%" }}
             />
+            <Script src="https://widgets.sociablekit.com/instagram-feed/widget.js" strategy="lazyOnload" />
           </div>
         </div>
       </div>
