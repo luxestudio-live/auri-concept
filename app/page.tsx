@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import Script from "next/script"
+import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -455,13 +455,14 @@ function InstagramCTA() {
               </a>
             </Button>
           </div>
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border border-border">
-            <div
-              className="sk-instagram-feed"
-              data-embed-id="25678219"
-              style={{ width: "100%", height: "100%" }}
+          <div className="w-full overflow-hidden rounded-lg border border-border bg-muted py-8 flex items-center justify-center">
+            <Image
+              src={assetPath("/May%20Instgaram%20Feed.png")}
+              alt="Auri Concept Instagram grid: luxury lighting and interiors"
+              width={600}
+              height={400}
+              className="w-full h-auto object-contain"
             />
-            <Script src="https://widgets.sociablekit.com/instagram-feed/widget.js" strategy="lazyOnload" />
           </div>
         </div>
       </div>
@@ -645,6 +646,28 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 flex flex-col md:flex-row gap-8 items-center">
+          <div className="w-full md:w-1/2 flex justify-center">
+            <video
+              src={assetPath("/NovaraSeries.mp4")}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="rounded-lg w-full h-auto border border-border shadow bg-black"
+            >
+              Sorry, your browser does not support embedded videos.
+            </video>
+          </div>
+          <div className="w-full md:w-1/2">
+            <h2 className="text-2xl font-semibold md:text-3xl mb-4 text-foreground">Novara Series</h2>
+            <p className="text-lg text-foreground/80 mb-4">
+              Discover the elegance and sophistication of our Novara Series lighting collection.
+            </p>
+          </div>
+        </div>
+      </section>
       <FeaturedProductZoom
         productName="Shloka Series Magnetic Track Light"
         videoSrc={assetPath("/Shloka.mp4")}
