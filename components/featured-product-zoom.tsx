@@ -7,12 +7,16 @@ type Props = {
   productName?: string
   videoSrc?: string
   images?: string[]
+  description?: string
+  variant?: "default" | "vertical" | "horizontal"
 }
 
 export default function FeaturedProductZoom({
   productName = "Featured Product",
   videoSrc = assetPath("/featured-product.mp4"),
   images = [assetPath("/featured1.jpg"), assetPath("/featured2.jpg"), assetPath("/featured3.jpg")],
+  description,
+  variant = "default",
 }: Props) {
   const [modal, setModal] = React.useState<null | { type: "video" | "image"; src: string }> (null)
 
@@ -31,15 +35,15 @@ export default function FeaturedProductZoom({
         <h2 className="text-2xl font-semibold md:text-3xl mb-2 text-card-foreground">Featured Product</h2>
   <div className="text-lg font-medium text-card-foreground mb-6">{productName}</div>
 
-        <div className="w-full flex flex-col md:flex-row gap-6 items-stretch md:items-center">
+        <div className={variant === "vertical" ? "w-full flex flex-col gap-6 items-center" : variant === "horizontal" ? "w-full flex flex-col md:flex-row gap-8 items-center" : "w-full flex flex-col md:flex-row gap-6 items-stretch md:items-center"}>
           {/* Video column - large, always matches image column height */}
-          <div className="flex-shrink-0 w-full md:w-1/2 flex items-center justify-center">
+          <div className={variant === "vertical" ? "w-full flex items-center justify-center" : variant === "horizontal" ? "w-full md:w-[42%] flex items-center justify-center" : "flex-shrink-0 w-full md:w-1/2 flex items-center justify-center"}>
             <div className="flex flex-col h-full w-full items-center justify-center">
               <button
                 onClick={() => setModal({ type: "video", src: videoSrc })}
                 aria-label={`Open ${productName} video`}
                 className="rounded-lg overflow-hidden border border-border shadow focus:outline-none focus:ring-2 focus:ring-primary/40 bg-black"
-                style={{ width: '100%', maxWidth: 420 }}
+                style={variant === "vertical" ? { width: "100%", maxWidth: 360 } : variant === "horizontal" ? { width: "100%", maxWidth: 560 } : { width: '100%', maxWidth: 420 }}
               >
                 <video
                   src={videoSrc}
@@ -47,35 +51,47 @@ export default function FeaturedProductZoom({
                   loop
                   muted
                   playsInline
-                  className="w-full h-auto aspect-[3/4] object-cover bg-black block max-h-[60vw] md:max-h-[560px]"
-                  style={{ maxHeight: 560, minHeight: 220 }}
+                  className={variant === "vertical" ? "w-full h-auto aspect-[9/16] object-cover bg-black block max-h-[75vw] md:max-h-[640px]" : variant === "horizontal" ? "w-full h-auto aspect-[16/9] object-cover bg-black block max-h-[52vw] md:max-h-[360px]" : "w-full h-auto aspect-[3/4] object-cover bg-black block max-h-[60vw] md:max-h-[560px]"}
+                  style={variant === "vertical" ? { maxHeight: 640, minHeight: 320 } : variant === "horizontal" ? { maxHeight: 360, minHeight: 220 } : { maxHeight: 560, minHeight: 220 }}
                 />
               </button>
             </div>
           </div>
 
-          {/* Images column - 2 per row, small, total height matches video */}
-          <div className="flex-1 flex flex-col justify-center">
-            <div
-              className="grid grid-cols-2 gap-2 bg-background p-1 rounded-lg items-stretch"
-              style={{ height: 'auto', maxHeight: 560, minHeight: 120 }}
-            >
-              {images.map((img, i) => (
-                <div
-                  key={img}
-                  className="bg-white dark:bg-neutral-900 rounded-lg border border-border shadow overflow-hidden flex items-center justify-center aspect-[4/3]"
-                >
-                  <button
-                    onClick={() => setModal({ type: "image", src: img })}
-                    aria-label={`Open ${productName} image ${i + 1}`}
-                    className="w-full h-full flex items-center justify-center p-0"
-                  >
-                    <img src={img} alt={`${productName} image ${i + 1}`} className="w-full h-full object-contain" />
-                  </button>
-                </div>
-              ))}
+          {variant === "horizontal" && (
+            <div className="w-full md:w-[58%] flex items-center">
+              <div className="max-w-xl">
+                <h3 className="text-2xl font-semibold md:text-3xl text-card-foreground">{productName}</h3>
+                <p className="mt-3 text-base md:text-lg text-card-foreground/80 leading-relaxed">
+                  {description ?? "A sleek lighting solution designed for modern interiors with a clean, refined finish."}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
+
+          {variant !== "vertical" && images.length > 0 && (
+            <div className="flex-1 flex flex-col justify-center">
+              <div
+                className="grid grid-cols-2 gap-2 bg-background p-1 rounded-lg items-stretch"
+                style={{ height: 'auto', maxHeight: 560, minHeight: 120 }}
+              >
+                {images.map((img, i) => (
+                  <div
+                    key={img}
+                    className="bg-white dark:bg-neutral-900 rounded-lg border border-border shadow overflow-hidden flex items-center justify-center aspect-[4/3]"
+                  >
+                    <button
+                      onClick={() => setModal({ type: "image", src: img })}
+                      aria-label={`Open ${productName} image ${i + 1}`}
+                      className="w-full h-full flex items-center justify-center p-0"
+                    >
+                      <img src={img} alt={`${productName} image ${i + 1}`} className="w-full h-full object-contain" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

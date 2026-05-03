@@ -53,6 +53,37 @@ function writeProductsCache(products: Category[]) {
   }
 }
 
+const CATALOGUE_DOCUMENTS = [
+  {
+    title: "Nortek Catalogue 2026-27",
+    description: "Product catalogue and range overview.",
+    href: assetPath(encodeURI("/Nortek Catalogue 2026-27.pdf")),
+    accent: "bg-stone-950",
+    chip: "Catalogue",
+  },
+  {
+    title: "FOURFIVE Price List APRIL 2026",
+    description: "Current pricing and product reference.",
+    href: assetPath(encodeURI("/FOURFIVE Price List APRIL 2026.pdf")),
+    accent: "bg-slate-800",
+    chip: "Price List",
+  },
+  {
+    title: "Leon New Pricelist 2026 May",
+    description: "Latest pricing sheet for the Leon range.",
+    href: assetPath(encodeURI("/Leon New Pricelist 2026 May.pdf")),
+    accent: "bg-emerald-700",
+    chip: "Price List",
+  },
+  {
+    title: "Home Automation Products Catalog",
+    description: "Automation products catalog with prices.",
+    href: assetPath(encodeURI("/Home Automation Products Catalog (with prices) UPDATED with different cover 1.pdf")),
+    accent: "bg-violet-700",
+    chip: "Catalogue",
+  },
+] as const
+
 function Hero() {
   return <HeroWrapper />
 }
@@ -262,7 +293,7 @@ function ProductCategories() {
             )}
           </div>
           <Button asChild variant="outline">
-            <a href="/contact" aria-label="Contact for product inquiries">
+            <a href="#catalogue" aria-label="Jump to catalogue downloads">
               Request a Catalog
             </a>
           </Button>
@@ -457,13 +488,83 @@ function InstagramCTA() {
           </div>
           <div className="w-full overflow-hidden rounded-lg border border-border bg-muted py-8 flex items-center justify-center">
             <Image
-              src={assetPath("/May%20Instgaram%20Feed.png")}
+              src={assetPath("/MayInstgaramFeed.jpeg")}
               alt="Auri Concept Instagram grid: luxury lighting and interiors"
               width={600}
               height={400}
               className="w-full h-auto object-contain"
             />
           </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function CatalogueSection() {
+  return (
+    <section id="catalogue" className="border-b border-border bg-card scroll-mt-24">
+      <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+        <div className="max-w-2xl">
+          <span className="inline-flex rounded-full border border-border bg-background px-3 py-1 text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground">
+            Catalogue Downloads
+          </span>
+          <h2 className="mt-4 text-pretty text-2xl font-semibold md:text-3xl text-card-foreground">
+            Download the latest catalogues and price lists.
+          </h2>
+          <p className="mt-3 text-muted-foreground leading-relaxed">
+            A curated set of PDF documents for quick access and direct download.
+          </p>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {CATALOGUE_DOCUMENTS.map((document) => (
+            <div
+              key={document.title}
+              className="group overflow-hidden rounded-3xl border border-border bg-background shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.12)]"
+            >
+              <div className="p-4">
+                <div className="overflow-hidden rounded-2xl border border-border bg-card">
+                  <div className={`relative h-40 ${document.accent} p-4 text-white`}>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.25),transparent_42%),linear-gradient(135deg,rgba(255,255,255,0.10),transparent_45%)]" />
+                    <div className="relative flex h-full flex-col justify-between">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/90 backdrop-blur">
+                          {document.chip}
+                        </span>
+                        <div className="rounded-full border border-white/20 bg-white/10 p-2 backdrop-blur">
+                          <svg className="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <path d="M12 3v12" />
+                            <path d="m7 10 5 5 5-5" />
+                            <path d="M5 21h14" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.22em] text-white/75">PDF Document</p>
+                        <h3 className="mt-2 text-xl font-semibold leading-tight text-white">{document.title}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-1 pb-1 pt-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{document.description}</p>
+                  <Button asChild variant="outline" className="mt-5 w-full gap-2 rounded-full border-border bg-background/80 hover:bg-card">
+                    <a href={document.href} download>
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M12 3v12" />
+                        <path d="m7 10 5 5 5-5" />
+                        <path d="M5 21h14" />
+                      </svg>
+                      Download PDF
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -646,28 +747,13 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
-      <section className="border-b border-border bg-background">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 flex flex-col md:flex-row gap-8 items-center">
-          <div className="w-full md:w-1/2 flex justify-center">
-            <video
-              src={assetPath("/NovaraSeries.mp4")}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="rounded-lg w-full h-auto border border-border shadow bg-black"
-            >
-              Sorry, your browser does not support embedded videos.
-            </video>
-          </div>
-          <div className="w-full md:w-1/2">
-            <h2 className="text-2xl font-semibold md:text-3xl mb-4 text-foreground">Novara Series</h2>
-            <p className="text-lg text-foreground/80 mb-4">
-              Discover the elegance and sophistication of our Novara Series lighting collection.
-            </p>
-          </div>
-        </div>
-      </section>
+      <FeaturedProductZoom
+        productName="Novara Series"
+        videoSrc={assetPath("/NovaraSeries.mp4")}
+        images={[]}
+        variant="horizontal"
+        description="A sleek lighting profile that blends clean lines with modern interiors."
+      />
       <FeaturedProductZoom
         productName="Shloka Series Magnetic Track Light"
         videoSrc={assetPath("/Shloka.mp4")}
@@ -683,6 +769,7 @@ export default function HomePage() {
       <TestimonialsSection />
       <BrandHighlights />
       <InstagramCTA />
+      <CatalogueSection />
       <ContactCTA />
       {/* Header/Footer are provided by the root layout */}
     </main>
